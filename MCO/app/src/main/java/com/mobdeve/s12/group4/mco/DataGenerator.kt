@@ -1,5 +1,11 @@
 package com.mobdeve.s12.group4.mco
 
+import com.mobdeve.s12.group4.mco.models.Account
+import com.mobdeve.s12.group4.mco.models.Category
+import com.mobdeve.s12.group4.mco.models.CustomDate
+import com.mobdeve.s12.group4.mco.models.IconItem
+import com.mobdeve.s12.group4.mco.models.Transaction
+
 class DataGenerator {
     companion object {
         // Define Categories
@@ -16,7 +22,14 @@ class DataGenerator {
         private val transaction1 = Transaction(50.0f, "Expense", clothing, accountCash, "Loving these clothes", CustomDate(2023, 0, 10))
         private val transaction2 = Transaction(200.0f, "Expense", health, accountSavings, "Eat healthy", CustomDate(2024, 10, 12))
         private val transaction3 = Transaction(500.0f, "Income", salary, accountChecking, "Paycheck day!", CustomDate(2024, 10, 1))
-        private val transaction4 = Transaction(20.0f, "Expense", health, accountCash, "Gym break!",CustomDate(2024, 10, 23))
+        private val transaction4 = Transaction(20.0f, "Expense", health, accountCash, "Gym break!",
+            CustomDate(2024, 10, 23)
+        )
+
+        // Define Icons
+        private val icon1 = IconItem(R.drawable.pig, "#FFAAB9")
+        private val icon2 = IconItem(R.drawable.card, "#67D4FF")
+        private val icon3 = IconItem(R.drawable.cash, "#A2CC8D")
 
         init {
             // Add transactions to categories
@@ -45,6 +58,10 @@ class DataGenerator {
         // Function to generate category data
         fun generateCategoryData(): ArrayList<Category> {
             return arrayListOf(salary, clothing, health)
+        }
+
+        fun generateIcons(): ArrayList<IconItem> {
+            return arrayListOf(icon1, icon2, icon3)
         }
     }
 }

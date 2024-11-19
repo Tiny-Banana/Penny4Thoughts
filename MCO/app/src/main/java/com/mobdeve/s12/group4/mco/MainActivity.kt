@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +14,16 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
+import com.mobdeve.s12.group4.mco.adapters.IconAdapter
+import com.mobdeve.s12.group4.mco.fragments.HomeFragment
+import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
+import com.mobdeve.s12.group4.mco.models.Account
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView : BottomNavigationView
@@ -24,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var toolbar : Toolbar
     private lateinit var addBtn : FloatingActionButton
+    private lateinit var popupManager: PopupManager
+    private lateinit var accountAdapter : AccountAdapter
+    private lateinit var iconAdapter: IconAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +46,15 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        val homeFragment = HomeFragment()
-        val recordsFragment = RecordsFragment()
+        val accounts = DataGenerator.generateAccountData()
+        val icons = DataGenerator.generateIcons()
+        accountAdapter = AccountAdapter(accounts)
+        iconAdapter = IconAdapter(icons)
 
+        val homeFragment = HomeFragment(accountAdapter)
+        val recordsFragment = RecordsFragment()
         setCurrentFragment(homeFragment)
+
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -53,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        popupManager = PopupManager(this, accountAdapter, iconAdapter)
         addBtn.setOnClickListener {
             showAddPopUp(it)
         }
@@ -74,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.add_new_account -> {
                     Toast.makeText(this, "Add New Account clicked", Toast.LENGTH_SHORT).show()
-                    showNewAccPopUp()
+                    popupManager.showNewAccPopUp()
                     true
                 }
                 R.id.add_transaction -> {
@@ -87,24 +103,6 @@ class MainActivity : AppCompatActivity() {
 
         // Show the popup menu
         popupMenu.show()
-    }
-
-    private fun showNewAccPopUp() {
-        val popupView = layoutInflater.inflate(R.layout.popup_new_account, null)
-        // Create the PopupWindow
-        val popupWindow = PopupWindow(popupView,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT)
-
-        popupWindow.isFocusable = true;
-        popupWindow.update();
-        popupWindow.showAtLocation(findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
-
-
-
-        popupView.findViewById<MaterialButton>(R.id.cancelBtn).setOnClickListener {
-            popupWindow.dismiss()
-        }
     }
 
     private fun setCurrentFragment(fragment: Fragment) {

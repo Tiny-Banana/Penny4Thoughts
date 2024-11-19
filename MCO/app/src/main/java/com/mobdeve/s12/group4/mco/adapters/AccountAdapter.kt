@@ -1,4 +1,4 @@
-package com.mobdeve.s12.group4.mco
+package com.mobdeve.s12.group4.mco.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mobdeve.s12.group4.mco.R
+import com.mobdeve.s12.group4.mco.models.Account
 
-class AccountsAdapter(var accounts: List <Account>) : RecyclerView.Adapter<AccountsAdapter.AccountsHolder>() {
+class AccountAdapter(var accounts: ArrayList<Account>) : RecyclerView.Adapter<AccountAdapter.AccountsHolder>() {
 
     inner class AccountsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val accountName : TextView =  itemView.findViewById(R.id.accountName)
@@ -29,5 +31,10 @@ class AccountsAdapter(var accounts: List <Account>) : RecyclerView.Adapter<Accou
         holder.accountName.text = account.name
         holder.accountBal.text = account.balance.toString()
         holder.accountImg.setImageResource(account.imageId)
+    }
+
+    fun addAccount(account: Account) {
+        accounts.add(account)
+        notifyItemInserted(accounts.size - 1)
     }
 }
