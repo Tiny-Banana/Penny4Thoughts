@@ -1,4 +1,4 @@
-package com.mobdeve.s12.group4.mco
+package com.mobdeve.s12.group4.mco.models
 
 class Category(imageId: Int, name: String, transactions: MutableList<Transaction>) {
     var imageId = imageId

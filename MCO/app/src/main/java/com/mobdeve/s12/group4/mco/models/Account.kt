@@ -1,4 +1,4 @@
-package com.mobdeve.s12.group4.mco
+package com.mobdeve.s12.group4.mco.models
 
 class Account(imageId: Int, name: String, balance: Float, transactions: MutableList<Transaction>) {
     var imageId = imageId

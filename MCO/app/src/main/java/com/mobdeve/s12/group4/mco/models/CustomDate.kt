@@ -1,4 +1,4 @@
-package com.mobdeve.s12.group4.mco
+package com.mobdeve.s12.group4.mco.models
 import java.util.Calendar
 
 class CustomDate {
