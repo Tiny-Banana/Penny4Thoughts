@@ -1,9 +1,10 @@
-package com.mobdeve.s12.group4.mco
+package com.mobdeve.s12.group4.mco.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import com.mobdeve.s12.group4.mco.R
 
 class Act1Welcome: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
