@@ -55,6 +55,11 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_icon.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_new_account.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
@@ -87,17 +92,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="923965c8-0139-4d2d-9043-9f0b855d97e4" name="Changes" comment="feat: add navdrawer">
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/Account.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/AccountsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/AccountAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Act1Welcome.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/activities/Act1Welcome.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Act2SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/activities/Act2SignUp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Act3LogIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/activities/Act3LogIn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Act4ProfMng.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/activities/Act4ProfMng.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/Category.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/CustomDate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/CustomDate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/DataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/DataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/fragments/HomeFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/act_welcome.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/act_welcome.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/home_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/home_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/values-night/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/values-night/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/RecordsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/fragments/RecordsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/Transaction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/Transaction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/drawable/button_border.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_new_account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_new_account.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +120,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=797d2c4e)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\Jomar\.android\avd\Pixel_8a_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/MCO">
       <ProjectState />
@@ -116,9 +129,35 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/MCO/app">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MCO" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MCO" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MCO" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MCO" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -128,10 +167,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
-        <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -175,9 +215,9 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "automatic__budgeting__layout",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Jomar/AndroidStudioProjects/HelloW2",
+    "last_opened_file_path": "C:/Users/Jomar/AndroidStudioProjects/SampleMySQLLiteApp 2 3",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   },
   "keyToStringList": {
@@ -193,6 +233,12 @@
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
       <recent name="com.mobdeve.s12.group4.mco" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.mobdeve.s12.group4.mco.activities" />
+      <recent name="com.mobdeve.s12.group4.mco.adapters" />
+      <recent name="com.mobdeve.s12.group4.mco.fragments" />
+      <recent name="com.mobdeve.s12.group4.mco.models" />
     </key>
   </component>
   <component name="RunManager">
