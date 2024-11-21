@@ -12,27 +12,26 @@
         android:id="@+id/materialButton"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:backgroundTint="@color/off_beige"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/dark_green"
-        app:strokeWidth="2dp"
-        app:backgroundTint="@color/off_beige"></com.google.android.material.button.MaterialButton>
+        app:strokeWidth="2dp"></com.google.android.material.button.MaterialButton>
 
     <ImageView
         android:id="@+id/accountImg"
-        android:layout_width="68dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/materialButton"
         app:layout_constraintStart_toStartOf="@+id/materialButton"
         app:layout_constraintTop_toTopOf="@+id/materialButton"
-        app:layout_constraintVertical_bias="0.38"
         app:srcCompat="@drawable/pig" />
 
     <TextView

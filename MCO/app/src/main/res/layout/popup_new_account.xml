@@ -38,80 +38,6 @@
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
 
-
-    <!--    <Button-->
-<!--        android:id="@+id/materialButton2"-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="59dp"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:backgroundTint="#A2CC8D"-->
-<!--        app:strokeColor="@color/dark_green"-->
-<!--        app:cornerRadius="5dp"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/myRectangleView"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView5">-->
-
-<!--    </Button>-->
-
-<!--    <Button-->
-<!--        android:id="@+id/materialButton3"-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="59dp"-->
-<!--        android:layout_marginStart="40dp"-->
-<!--        app:cornerRadius="5dp"-->
-<!--        android:backgroundTint="#67D4FF"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/materialButton2"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/materialButton2">-->
-<!--    </Button>-->
-
-
-<!--    <Button-->
-<!--        android:id="@+id/materialButton4"-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="59dp"-->
-<!--        android:layout_marginStart="32dp"-->
-<!--        app:cornerRadius="5dp"-->
-<!--        android:backgroundTint="#FFAAB9"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"-->
-<!--        app:layout_constraintHorizontal_bias="0.111"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/materialButton3"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/materialButton3">-->
-<!--    </Button>-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView"-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/card"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/materialButton3"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/materialButton3"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/materialButton3"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/materialButton3">-->
-<!--    </ImageView>-->
-
-<!--    <ImageView-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="44dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/cash"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/materialButton2"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/materialButton2"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/materialButton2"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/materialButton2"></ImageView>-->
-
-<!--    <ImageView-->
-<!--        android:layout_width="53dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/pig"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/materialButton4"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/materialButton4"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/materialButton4"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/materialButton4"></ImageView>-->
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/acc_popup_rv"
         android:layout_width="279dp"
@@ -197,7 +123,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancelBtn"
+        android:id="@+id/trans_cancelBtn"
         android:layout_width="118dp"
         android:layout_height="55dp"
         android:layout_marginStart="40dp"
@@ -213,7 +139,7 @@
         app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/saveBtn"
+        android:id="@+id/trans_saveBtn"
         android:layout_width="118dp"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
@@ -222,8 +148,8 @@
         android:text="SAVE"
         android:textSize="16sp"
         app:cornerRadius="10dp"
-        app:layout_constraintStart_toEndOf="@+id/cancelBtn"
-        app:layout_constraintTop_toTopOf="@+id/cancelBtn"
+        app:layout_constraintStart_toEndOf="@+id/trans_cancelBtn"
+        app:layout_constraintTop_toTopOf="@+id/trans_cancelBtn"
         app:strokeColor="#004D40"
         app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
