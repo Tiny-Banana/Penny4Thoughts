@@ -5,6 +5,5 @@ class IconItem(imageID: Int, bgColor: String) {
         private set
     var bgColor = bgColor
         private set
-
-    var isSelected = false;
+    var isSelected = false
 }
