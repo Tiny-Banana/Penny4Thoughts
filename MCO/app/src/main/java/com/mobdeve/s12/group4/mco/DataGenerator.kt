@@ -9,9 +9,11 @@ import com.mobdeve.s12.group4.mco.models.Transaction
 class DataGenerator {
     companion object {
         // Define Categories
-        private val salary = Category(R.drawable.cash, "Salary", mutableListOf())
-        private val clothing = Category(R.drawable.pig, "Clothing", mutableListOf())
-        private val health = Category(R.drawable.card, "Health", mutableListOf())
+        private val salary = Category(R.drawable.wallet, "Salary", mutableListOf())
+        private val grants = Category(R.drawable.giftbox, "Grants", mutableListOf())
+        private val education = Category(R.drawable.education, "Education", mutableListOf())
+        private val health = Category(R.drawable.health, "Health", mutableListOf())
+        private val food = Category(R.drawable.food, "Food", mutableListOf())
 
         // Define Accounts
         private val accountChecking = Account(R.drawable.card, "Checking Account", 1000.0f, mutableListOf())
@@ -19,12 +21,11 @@ class DataGenerator {
         private val accountCash = Account(R.drawable.cash, "Cash", 200.0f, mutableListOf())
 
         // Define Transactions
-        private val transaction1 = Transaction(50.0f, "Expense", clothing, accountCash, "Loving these clothes", CustomDate(2023, 0, 10))
-        private val transaction2 = Transaction(200.0f, "Expense", health, accountSavings, "Eat healthy", CustomDate(2024, 10, 12))
+        private val transaction1 = Transaction(50.0f, "Expense", education, accountCash, "Just graduated!", CustomDate(2023, 0, 10))
+        private val transaction2 = Transaction(200.0f, "Expense", food, accountSavings, "Eat healthy", CustomDate(2024, 10, 12))
         private val transaction3 = Transaction(500.0f, "Income", salary, accountChecking, "Paycheck day!", CustomDate(2024, 10, 1))
-        private val transaction4 = Transaction(20.0f, "Expense", health, accountCash, "Gym break!",
-            CustomDate(2024, 10, 23)
-        )
+        private val transaction4 = Transaction(20.0f, "Expense", health, accountCash, "Gym break!", CustomDate(2024, 10, 23))
+        private val transaction5 = Transaction(20.0f, "Income", grants, accountCash, "Won this gift card!", CustomDate(2024, 10, 23))
 
         // Define Icons
         private val icon1 = IconItem(R.drawable.pig, "#FFAAB9")
@@ -33,16 +34,18 @@ class DataGenerator {
 
         init {
             // Add transactions to categories
-            clothing.addTransaction(transaction1)
-            health.addTransaction(transaction2)
+            education.addTransaction(transaction1)
+            food.addTransaction(transaction2)
             salary.addTransaction(transaction3)
             health.addTransaction(transaction4)
+            food.addTransaction(transaction5)
 
             // Add transactions to accounts
             accountCash.addTransaction(transaction1)
             accountSavings.addTransaction(transaction2)
             accountChecking.addTransaction(transaction3)
             accountCash.addTransaction(transaction4)
+            accountCash.addTransaction(transaction5)
         }
 
         // Function to generate account data
@@ -52,12 +55,12 @@ class DataGenerator {
 
         // Function to generate transaction data
         fun generateTransactionData(): ArrayList<Transaction> {
-            return arrayListOf(transaction1, transaction2, transaction3, transaction4)
+            return arrayListOf(transaction1, transaction2, transaction3, transaction4, transaction5)
         }
 
         // Function to generate category data
         fun generateCategoryData(): ArrayList<Category> {
-            return arrayListOf(salary, clothing, health)
+            return arrayListOf(salary, grants, food, education, health)
         }
 
         fun generateIcons(): ArrayList<IconItem> {
