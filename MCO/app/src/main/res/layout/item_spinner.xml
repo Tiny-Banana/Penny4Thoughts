@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/spin_img"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pig" />
+
+    <TextView
+        android:id="@+id/spin_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Account 1"
+        app:layout_constraintBottom_toBottomOf="@+id/spin_img"
+        app:layout_constraintStart_toEndOf="@+id/spin_img"
+        app:layout_constraintTop_toTopOf="@+id/spin_img"
+        app:layout_constraintVertical_bias="0.461" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="28dp"-->
+<!--        android:fontFamily="@font/poppins_bold"-->
+<!--        android:text="₱"-->
+<!--        android:textColor="@color/light_green"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView11"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/textView11"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView11"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView12"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:text="0.00"-->
+<!--        android:textColor="@color/light_green"-->
+<!--        android:fontFamily="@font/poppins_bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView4"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/textView4"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/textView4"-->
+<!--        app:layout_constraintVertical_bias="0.4" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
