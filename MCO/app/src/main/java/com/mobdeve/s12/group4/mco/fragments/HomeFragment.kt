@@ -9,7 +9,7 @@ import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
 import com.mobdeve.s12.group4.mco.R
 
 
-class HomeFragment(private val accountAdapter: AccountAdapter) : Fragment(R.layout.home_fragment) {
+class HomeFragment(private val accountAdapter: AccountAdapter) : Fragment(R.layout.fragment_home) {
     private lateinit var accountsRV: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
