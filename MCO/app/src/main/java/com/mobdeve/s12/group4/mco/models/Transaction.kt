@@ -1,8 +1,11 @@
 package com.mobdeve.s12.group4.mco.models
 
-class Transaction(amount: Float, type: String, category: Category,
+class Transaction(id : Int, amount: Float, type: String, category: Category,
                   account: Account, notes: String, createdAt: CustomDate
 ) {
+    var id = id
+        private set
+
     var amount = amount
         private set
 
