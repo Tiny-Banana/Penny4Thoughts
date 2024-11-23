@@ -25,27 +25,22 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/analysis_fragment.xml">
-        <config>
-          <theme>@style/Theme.MCO</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/budget_fragment.xml">
-        <config>
-          <theme>@style/Theme.MCO</theme>
-        </config>
-      </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/category_fragment.xml">
-        <config>
-          <theme>@style/Theme.MCO</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/drawer_header.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/home_fragment.xml">
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/fragment_category.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/fragment_home.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/fragment_records.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
@@ -75,7 +70,17 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/records_fragment.xml">
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/recyclerview_category_child.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/recyclerview_parent.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/recyclerview_transac_child.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
@@ -101,13 +106,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="923965c8-0139-4d2d-9043-9f0b855d97e4" name="Changes" comment="fix: img sizing">
+    <list default="true" id="923965c8-0139-4d2d-9043-9f0b855d97e4" name="Changes" comment="fix: add date for addtransac popup">
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/DataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/DataGenerator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/PopupManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/PopupManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/IconItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/IconItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/analysis_fragment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,8 +170,8 @@
       <list>
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -204,25 +208,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.MCO.app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jomar/Desktop/Penny4Thoughts/MCO/app/src/main/res/layout&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.MCO.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Jomar/Desktop",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\Jomar\\.gradle&quot;
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\Jomar\\.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jomar\Desktop\Penny4Thoughts\MCO\app\src\main\res\layout" />
@@ -235,10 +239,11 @@
       <recent name="com.mobdeve.s12.group4.mco" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.mobdeve.s12.group4.mco.utility" />
+      <recent name="com.mobdeve.s12.group4.mco.models" />
       <recent name="com.mobdeve.s12.group4.mco.activities" />
       <recent name="com.mobdeve.s12.group4.mco.adapters" />
       <recent name="com.mobdeve.s12.group4.mco.fragments" />
-      <recent name="com.mobdeve.s12.group4.mco.models" />
     </key>
   </component>
   <component name="RunManager">
@@ -486,7 +491,215 @@
       <option name="project" value="LOCAL" />
       <updated>1732212228684</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="style: change spacing">
+      <option name="closed" value="true" />
+      <created>1732212275639</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212275639</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat: add spinner adapter">
+      <option name="closed" value="true" />
+      <created>1732212321936</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212321936</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: add spinner layout">
+      <option name="closed" value="true" />
+      <created>1732212361646</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212361646</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: add popup transaction">
+      <option name="closed" value="true" />
+      <created>1732212377350</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212377350</updated>
+    </task>
+    <task id="LOCAL-00026" summary="build: update workspace">
+      <option name="closed" value="true" />
+      <created>1732212404610</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212404610</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix: accept decimal in popup new acc">
+      <option name="closed" value="true" />
+      <created>1732212493234</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732212493234</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: add parent recycler view">
+      <option name="closed" value="true" />
+      <created>1732375339114</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375339114</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: add category and and transac recycler view layouts">
+      <option name="closed" value="true" />
+      <created>1732375362757</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375362757</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: add parent recycler adapter">
+      <option name="closed" value="true" />
+      <created>1732375529423</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375529423</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: add child recycler adapters">
+      <option name="closed" value="true" />
+      <created>1732375565935</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375565935</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat: add parent data class">
+      <option name="closed" value="true" />
+      <created>1732375586725</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375586725</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: add record fragment layout">
+      <option name="closed" value="true" />
+      <created>1732375619611</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375619611</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat: add category fragment layout">
+      <option name="closed" value="true" />
+      <created>1732375629181</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375629181</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix: add id for base models">
+      <option name="closed" value="true" />
+      <created>1732375660697</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375660697</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix: add record fragment">
+      <option name="closed" value="true" />
+      <created>1732375728814</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375728814</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fix: add category fragment">
+      <option name="closed" value="true" />
+      <created>1732375739337</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375739337</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: add recycler view child item layouts">
+      <option name="closed" value="true" />
+      <created>1732375854958</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375854958</updated>
+    </task>
+    <task id="LOCAL-00039" summary="chore: rename home_fragment">
+      <option name="closed" value="true" />
+      <created>1732375889757</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375889757</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix: reflect ids to the base models">
+      <option name="closed" value="true" />
+      <created>1732375907018</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732375907018</updated>
+    </task>
+    <task id="LOCAL-00041" summary="feat: complete add transaction popup">
+      <option name="closed" value="true" />
+      <created>1732376036716</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376036716</updated>
+    </task>
+    <task id="LOCAL-00042" summary="chore: move datagenerator to utility">
+      <option name="closed" value="true" />
+      <created>1732376048207</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376048207</updated>
+    </task>
+    <task id="LOCAL-00043" summary="chore: reflect the renamed home fragment">
+      <option name="closed" value="true" />
+      <created>1732376086018</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376086018</updated>
+    </task>
+    <task id="LOCAL-00044" summary="chore: add transparent gray color">
+      <option name="closed" value="true" />
+      <created>1732376115616</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376115616</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix: make variables public">
+      <option name="closed" value="true" />
+      <created>1732376141426</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376141426</updated>
+    </task>
+    <task id="LOCAL-00046" summary="chore: rename records_fragment">
+      <option name="closed" value="true" />
+      <created>1732376170568</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376170568</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix: add date for addtransac popup">
+      <option name="closed" value="true" />
+      <created>1732376206607</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376206607</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,25 +714,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initialize new project" />
-    <MESSAGE value="chore: set colors and themes" />
-    <MESSAGE value="chore: add navbar icons" />
-    <MESSAGE value="feat: add navbar" />
-    <MESSAGE value="chore: add fonts" />
-    <MESSAGE value="chore: add icons for navdrawer" />
-    <MESSAGE value="feat: initialize fragments" />
-    <MESSAGE value="feat: add navdrawer" />
-    <MESSAGE value="chore: put activities to a folder" />
-    <MESSAGE value="chore: put models to a folder" />
-    <MESSAGE value="chore: put fragments to a folder" />
-    <MESSAGE value="feat: add accounts locally" />
-    <MESSAGE value="build: change gradle build version" />
-    <MESSAGE value="build: update ide generated files" />
-    <MESSAGE value="feat: add border rectangle" />
-    <MESSAGE value="chore: resize account imgs" />
-    <MESSAGE value="chore: add category imgs" />
-    <MESSAGE value="chore: add spinner img" />
-    <MESSAGE value="fix: img sizing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: img sizing" />
+    <MESSAGE value="feat: add spinner adapter" />
+    <MESSAGE value="feat: add spinner layout" />
+    <MESSAGE value="feat: add popup transaction" />
+    <MESSAGE value="build: update workspace" />
+    <MESSAGE value="fix: accept decimal in popup new acc" />
+    <MESSAGE value="feat: add parent recycler view" />
+    <MESSAGE value="feat: add category and and transac recycler view layouts" />
+    <MESSAGE value="feat: add parent recycler adapter" />
+    <MESSAGE value="feat: add child recycler adapters" />
+    <MESSAGE value="feat: add parent data class" />
+    <MESSAGE value="feat: add record fragment layout" />
+    <MESSAGE value="feat: add category fragment layout" />
+    <MESSAGE value="fix: add id for base models" />
+    <MESSAGE value="fix: add record fragment" />
+    <MESSAGE value="fix: add category fragment" />
+    <MESSAGE value="feat: add recycler view child item layouts" />
+    <MESSAGE value="chore: rename home_fragment" />
+    <MESSAGE value="fix: reflect ids to the base models" />
+    <MESSAGE value="feat: complete add transaction popup" />
+    <MESSAGE value="chore: move datagenerator to utility" />
+    <MESSAGE value="chore: reflect the renamed home fragment" />
+    <MESSAGE value="chore: add transparent gray color" />
+    <MESSAGE value="fix: make variables public" />
+    <MESSAGE value="chore: rename records_fragment" />
+    <MESSAGE value="fix: add date for addtransac popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: add date for addtransac popup" />
   </component>
 </project>
