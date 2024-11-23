@@ -2,9 +2,9 @@ package com.mobdeve.s12.group4.mco.models
 import java.util.Calendar
 
 class CustomDate {
-    private var day_in_month: Int
-    private var month: Int
-    private var year: Int
+    var day_in_month: Int
+    var month: Int
+    var year: Int
 
     // Creates a CustomDate for today
     constructor() {
