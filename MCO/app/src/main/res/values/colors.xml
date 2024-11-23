@@ -9,4 +9,5 @@
     <color name="primary_gray">#484747</color>
     <color name="secondary_gray">#696969</color>
     <color name="light_red">#FF8F8F</color>
+    <color name="semi_transparent_gray">#80B0B0B0</color>
 </resources>
