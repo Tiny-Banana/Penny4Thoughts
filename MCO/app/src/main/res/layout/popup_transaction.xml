@@ -21,27 +21,26 @@
         android:background="@drawable/rounded_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spin_acc"
         android:layout_width="303dp"
         android:layout_height="55dp"
         android:layout_marginTop="8dp"
-        android:dropDownVerticalOffset="40dp"
         android:background="@drawable/bg_spinner"
+        android:dropDownVerticalOffset="50dp"
         app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
-    </Spinner>
+        app:layout_constraintTop_toBottomOf="@+id/textView12"></Spinner>
 
     <Spinner
         android:id="@+id/spin_category"
         android:layout_width="303dp"
         android:layout_height="55dp"
         android:layout_marginTop="8dp"
+        android:dropDownVerticalOffset="50dp"
         android:background="@drawable/bg_spinner"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13"></Spinner>
@@ -72,7 +71,6 @@
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toTopOf="@+id/myRectangleView" />
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -88,7 +86,7 @@
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/notes"
+            android:id="@+id/trans_notes"
             android:layout_width="match_parent"
             android:layout_height="149dp"
             android:fontFamily="@font/poppins_regular"
@@ -169,10 +167,10 @@
         android:textColor="@color/dark_green"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/trans_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
@@ -192,19 +190,34 @@
         android:fontFamily="@font/poppins_regular"
         android:text="|"
         android:textColor="@color/dark_green"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/trans_income"
+        app:layout_constraintTop_toTopOf="@+id/trans_income" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/trans_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Expense"
         android:textColor="@color/dark_green"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/trans_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Jan 20, 2024"
+        android:textColor="@color/dark_green"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/spin_acc"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
