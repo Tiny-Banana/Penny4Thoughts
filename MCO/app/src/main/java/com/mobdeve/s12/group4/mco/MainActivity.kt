@@ -1,6 +1,5 @@
 package com.mobdeve.s12.group4.mco
 
-import android.accounts.Account
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -15,11 +14,21 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
+import com.mobdeve.s12.group4.mco.adapters.CategoryChildAdapter
 import com.mobdeve.s12.group4.mco.adapters.IconAdapter
+import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
+import com.mobdeve.s12.group4.mco.adapters.TransacChildAdapter
+import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
 import com.mobdeve.s12.group4.mco.models.Category
+import com.mobdeve.s12.group4.mco.models.CategoryParent
+import com.mobdeve.s12.group4.mco.models.TransacParent
+import com.mobdeve.s12.group4.mco.models.Transaction
+import com.mobdeve.s12.group4.mco.utility.DataGenerator
+import com.mobdeve.s12.group4.mco.utility.Filter
+import com.mobdeve.s12.group4.mco.utility.PopupManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView : BottomNavigationView
@@ -29,8 +38,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addBtn : FloatingActionButton
     private lateinit var popupManager: PopupManager
     private lateinit var accountAdapter : AccountAdapter
+    private lateinit var categoryAdapter: ParentAdapter<CategoryParent, Category>
+    private lateinit var recordsAdapter: ParentAdapter<TransacParent, Transaction>
     private lateinit var accountSpinnerAdapter: SpinnerAdapter<com.mobdeve.s12.group4.mco.models.Account>
-    private lateinit var categorySpinnerAdapter: SpinnerAdapter<Category>
     private lateinit var iconAdapter: IconAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,25 +56,40 @@ class MainActivity : AppCompatActivity() {
 
         val accounts = DataGenerator.generateAccountData()
         val categories = DataGenerator.generateCategoryData()
+        val categoryParent = DataGenerator.generateCategoryParent()
+        val transacParent = DataGenerator.generateTransacParent()
         val icons = DataGenerator.generateIcons()
+
+        val filter = Filter()
+
+        iconAdapter = IconAdapter(icons)
         accountAdapter = AccountAdapter(accounts)
         accountSpinnerAdapter = SpinnerAdapter(this, accounts,
-                                                { account -> account.name },
-                                                { account -> account.imageId })
-        categorySpinnerAdapter = SpinnerAdapter(this, categories,
-                                                { category -> category.name },
-                                                { category -> category.imageId })
-        iconAdapter = IconAdapter(icons)
+                                                { it.name },
+                                                { it.imageId })
+        categoryAdapter = ParentAdapter(categoryParent,
+                                        {it.section},
+                                        {it.list},
+                                        { childList -> CategoryChildAdapter(childList) },
+                                        filter)
+        recordsAdapter = ParentAdapter(transacParent,
+                                            {it.section},
+                                            {it.list},
+                                            { childList -> TransacChildAdapter(childList) },
+                                        filter)
 
         val homeFragment = HomeFragment(accountAdapter)
-        val recordsFragment = RecordsFragment()
+        val categoryFragment = CategoryFragment(categoryAdapter)
+        val recordsFragment = RecordsFragment(recordsAdapter, filter)
         setCurrentFragment(homeFragment)
+
 
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.record -> setCurrentFragment(recordsFragment)
+                R.id.category -> setCurrentFragment(categoryFragment)
             }
             true
         }
@@ -73,14 +98,20 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        popupManager = PopupManager(this, accountAdapter, accountSpinnerAdapter, categorySpinnerAdapter, iconAdapter)
+        popupManager = PopupManager(
+                            this,
+                            accountAdapter,
+                            recordsAdapter,
+                            accountSpinnerAdapter,
+                            iconAdapter,
+                            categories
+                            )
         addBtn.setOnClickListener {
             showAddPopUp(it)
         }
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
-
 
     private fun showAddPopUp(view: View) {
         // Create a PopupMenu
