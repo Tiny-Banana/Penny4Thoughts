@@ -1,6 +1,6 @@
 package com.mobdeve.s12.group4.mco.models
 
-class Transaction(id : Int, amount: Float, type: String, category: Category,
+class Transaction(id : Long, amount: Double, type: String, category: Category,
                   account: Account, notes: String, createdAt: CustomDate
 ) {
     var id = id

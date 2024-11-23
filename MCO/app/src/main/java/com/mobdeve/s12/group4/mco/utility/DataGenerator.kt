@@ -20,16 +20,16 @@ class DataGenerator {
         private val food = Category(4, R.drawable.food, "Food", "Expense", mutableListOf())
 
         // Define Accounts
-        private val accountChecking = Account(0, R.drawable.card, "Checking Account", 1000.0f, mutableListOf())
-        private val accountSavings = Account(1, R.drawable.pig, "Savings Account", 5000.0f, mutableListOf())
-        private val accountCash = Account(2, R.drawable.cash, "Cash", 200.0f, mutableListOf())
+        private val accountChecking = Account(0, R.drawable.card, "Checking Account", 1000.0, mutableListOf())
+        private val accountSavings = Account(1, R.drawable.pig, "Savings Account", 5000.0, mutableListOf())
+        private val accountCash = Account(2, R.drawable.cash, "Cash", 200.0, mutableListOf())
 
         // Define Transactions
-        private val transaction1 = Transaction(0, 50.0f, "Expense", education, accountCash, "Just graduated!", CustomDate(2024, 0, 10))
-        private val transaction2 = Transaction(1, 200.0f, "Expense", food, accountSavings, "Eat healthy", CustomDate(2024, 10, 12))
-        private val transaction3 = Transaction(2, 500.0f, "Income", salary, accountChecking, "Paycheck day!", CustomDate(2024, 10, 23))
-        private val transaction4 = Transaction(3, 20.0f, "Expense", health, accountCash, "Gym break!", CustomDate(2024, 10, 23))
-        private val transaction5 = Transaction(4, 20.0f, "Income", grants, accountCash, "Won this gift card!", CustomDate(2024, 10, 23))
+        private val transaction1 = Transaction(0, 50.0, "Expense", education, accountCash, "Just graduated!", CustomDate(2024, 0, 10))
+        private val transaction2 = Transaction(1, 200.0, "Expense", food, accountSavings, "Eat healthy", CustomDate(2024, 10, 12))
+        private val transaction3 = Transaction(2, 500.0, "Income", salary, accountChecking, "Paycheck day!", CustomDate(2024, 10, 23))
+        private val transaction4 = Transaction(3, 20.0, "Expense", health, accountCash, "Gym break!", CustomDate(2024, 10, 23))
+        private val transaction5 = Transaction(4, 20.0, "Income", grants, accountCash, "Won this gift card!", CustomDate(2024, 10, 23))
 
         // Define Icons
         private val icon1 = IconItem(R.drawable.pig, "#FFAAB9")
@@ -98,7 +98,7 @@ class DataGenerator {
 
             // Map the grouped data into TransacParent objects
             val transacParents = groupedTransactions.map { (date, transactionList) ->
-                TransacParent(section = date, list = transactionList.toMutableList())
+                TransacParent(section = date, transactions = transactionList.toMutableList())
             }
 
             Log.d("GroupedTransactions", "Grouped Transactions: $groupedTransactions")

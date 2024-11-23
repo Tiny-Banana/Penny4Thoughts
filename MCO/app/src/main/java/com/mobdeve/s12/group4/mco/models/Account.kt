@@ -1,6 +1,6 @@
 package com.mobdeve.s12.group4.mco.models
 
-class Account(id: Int, imageId: Int, name: String, balance: Float, transactions: MutableList<Transaction>) {
+class Account(id: Long, imageId: Int, name: String, balance: Double, transactions: MutableList<Transaction>) {
     var id = id
         private set
 
@@ -20,7 +20,7 @@ class Account(id: Int, imageId: Int, name: String, balance: Float, transactions:
         transactions.add(transaction)
     }
 
-    fun setBalance(balance: Float) {
+    fun setBalance(balance: Double) {
         this.balance = balance
     }
 }
