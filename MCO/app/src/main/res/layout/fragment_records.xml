@@ -76,7 +76,7 @@
                 android:textColor="@color/light_red" />
 
             <TextView
-                android:id="@+id/expenseCount"
+                android:id="@+id/monthlyExpense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
@@ -119,7 +119,7 @@
                 android:textColor="@color/light_green" />
 
             <TextView
-                android:id="@+id/incomeCount"
+                android:id="@+id/monthlyIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
