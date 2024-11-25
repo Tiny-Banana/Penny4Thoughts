@@ -22,7 +22,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="Education"
         android:textColor="@color/primary_gray"
-        android:textSize="12sp"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/trans_img"
         app:layout_constraintTop_toTopOf="@+id/trans_img" />
 
@@ -30,18 +30,19 @@
         android:id="@+id/trans_acc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Cash"
         android:textColor="@color/primary_gray"
-        android:textSize="9sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/trans_acc_img"
-        app:layout_constraintTop_toBottomOf="@+id/trans_category" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/trans_acc_img"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@+id/trans_category"
         app:layout_constraintTop_toTopOf="@+id/trans_category"
@@ -55,7 +56,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="₱"
         android:textColor="@color/light_red"
-        android:textSize="13sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/trans_rec_amt"
         app:layout_constraintEnd_toStartOf="@+id/trans_rec_amt"
         app:layout_constraintTop_toTopOf="@+id/trans_rec_amt" />
@@ -68,7 +69,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="-"
         android:textColor="@color/light_red"
-        android:textSize="13sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/trans_peso"
         app:layout_constraintEnd_toStartOf="@+id/trans_peso"
         app:layout_constraintTop_toTopOf="@+id/trans_peso"
@@ -78,12 +79,12 @@
         android:id="@+id/trans_rec_amt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_regular"
         android:text="240, 000"
         android:textColor="@color/light_red"
-        android:textSize="13sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
