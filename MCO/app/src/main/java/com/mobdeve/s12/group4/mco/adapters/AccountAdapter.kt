@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobdeve.s12.group4.mco.R
 import com.mobdeve.s12.group4.mco.models.Account
-import com.mobdeve.s12.group4.mco.utility.BalanceCalculator
 import java.text.DecimalFormat
 
 class AccountAdapter(var accounts: ArrayList<Account>) : RecyclerView.Adapter<AccountAdapter.AccountsHolder>() {
