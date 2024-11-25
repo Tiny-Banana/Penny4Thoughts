@@ -13,39 +13,30 @@ class Filter {
             selectedYear = year
         }
 
-        fun displayTransactionsForMonth(month: String,
-                                        year: Int,
-                                        transacParent: ArrayList<TransacParent>,
-                                        adapter: ParentAdapter<TransacParent, Transaction>) {
-
-            // Filter transacParents for the selected month and year
-            val filteredTransacParents = transacParent.filter { parent ->
-                // Extract the month and year from the section (e.g., "Jan 2024")
+        fun applyFilter(
+            month: String,
+            year: Int,
+            parentList: ArrayList<TransacParent>,
+            adapter: ParentAdapter<TransacParent, Transaction>
+        ): List<TransacParent> {
+            val filteredTransacParents = parentList.filter { parent ->
                 val sectionParts = parent.section.split(" ")
                 if (sectionParts.size >= 3) {
-                    val sectionMonth = sectionParts[0] // Extract "Jan"
-                    val sectionYear = sectionParts[2].toIntOrNull() // Extract year (e.g., "2024")
-                    // Match the month abbreviation and year
+                    val sectionMonth = sectionParts[0]
+                    val sectionYear = sectionParts[2].toIntOrNull()
                     sectionMonth == month && sectionYear == year
                 } else {
-                    false // Skip if the format is unexpected
+                    false
                 }
+            }.map { parent ->
+                val sortedChildren = parent.transactions.sortedBy { it.createdAt.day_in_month }
+                parent.copy(transactions = ArrayList(sortedChildren))
+            }.sortedBy { parent ->
+                parent.transactions.firstOrNull()?.createdAt?.day_in_month ?: 0
             }
 
-            // Further filter by day and sort by day in ascending order
-            val sortedFilteredTransacParents = filteredTransacParents.map { parent ->
-                // Sort the child transactions by day of the month in ascending order
-                val sortedChildren = parent.list.sortedBy { it.createdAt.day_in_month }
-                // Create a new TransacParent object with sorted children
-                parent.copy(list = ArrayList(sortedChildren))
-            }
-            // Sort the entire list of TransacParent objects based on the earliest transaction day
-            val sortedTransacParentsByDay = sortedFilteredTransacParents.sortedBy { parent ->
-                // Use the day of the first transaction (or the first child in the list)
-                parent.list.firstOrNull()?.createdAt?.day_in_month ?: 0
-            }
+            adapter.updateFilteredList(ArrayList(filteredTransacParents))
+            return filteredTransacParents
+        }
 
-            // Update the adapter with the filtered and sorted transacParents
-            adapter.updateFilteredList(ArrayList(sortedTransacParentsByDay))
-    }
 }
