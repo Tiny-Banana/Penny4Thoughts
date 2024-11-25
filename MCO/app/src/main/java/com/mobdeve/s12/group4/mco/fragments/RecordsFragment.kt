@@ -11,13 +11,17 @@ import com.mobdeve.s12.group4.mco.R
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.models.TransacParent
 import com.mobdeve.s12.group4.mco.models.Transaction
+import com.mobdeve.s12.group4.mco.utility.BalanceCalculator
 import com.mobdeve.s12.group4.mco.utility.Filter
+import java.text.DecimalFormat
 import java.util.Calendar
 
 class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
                       private val filter : Filter)
                         : Fragment(R.layout.fragment_records) {
 
+    private lateinit var expenseTV: TextView
+    private lateinit var incomeTV: TextView
     private lateinit var recordsRV: RecyclerView
     private lateinit var date: TextView
     private lateinit var ivBracketLeft: ImageView
@@ -36,23 +40,25 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize views
+        expenseTV = view.findViewById(R.id.monthlyExpense)
+        incomeTV = view.findViewById(R.id.monthlyIncome)
         recordsRV = view.findViewById(R.id.recordsRV)
         ivBracketLeft = view.findViewById(R.id.ivBracket1)
         ivBracketRight = view.findViewById(R.id.ivBracket2)
         date = view.findViewById(R.id.date)
+
+        // Set up RecyclerView
+        recordsRV.adapter = recordsAdapter
+        recordsRV.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize current month and year from the system
         val calendar = Calendar.getInstance()
         currentMonth = calendar.get(Calendar.MONTH) // 0-based month (January = 0)
         currentYear = calendar.get(Calendar.YEAR)
 
-        // Set up RecyclerView
-        recordsRV.adapter = recordsAdapter
-        recordsRV.layoutManager = LinearLayoutManager(requireContext())
-
         // Display transactions for the current month and year
-        selectedMonthName = monthNames[currentMonth].substring(0, 3)
-        filter.displayTransactionsForMonth(selectedMonthName, currentYear, recordsAdapter.originalList, recordsAdapter)
+        filterByMonth(currentMonth, currentYear)
+        updateBalance()
 
         // Setup arrow click listeners for month navigation
         ivBracketLeft.setOnClickListener {
@@ -63,6 +69,7 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
                 currentYear -= 1
             }
             filterByMonth(currentMonth, currentYear)
+            updateBalance()
         }
 
         ivBracketRight.setOnClickListener {
@@ -73,13 +80,27 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
                 currentYear += 1
             }
             filterByMonth(currentMonth, currentYear)
+            updateBalance()
         }
     }
 
-    fun filterByMonth(currentMonth: Int, currentYear: Int) {
+    private fun filterByMonth(currentMonth: Int, currentYear: Int) {
         selectedMonthName = monthNames[currentMonth].substring(0, 3)
         date.text = "$selectedMonthName $currentYear"
         filter.setSelectedDate(selectedMonthName, currentYear)
-        filter.displayTransactionsForMonth(selectedMonthName, currentYear, recordsAdapter.originalList, recordsAdapter)
+        filter.applyFilter(selectedMonthName,
+            currentYear,
+            recordsAdapter.originalList,
+            recordsAdapter)
+    }
+
+    fun updateBalance() {
+        if (!this::recordsRV.isInitialized) return
+
+        val filteredList = recordsAdapter.list
+        val balanceCalc = BalanceCalculator(filteredList)
+        val decimalFormat = DecimalFormat("#,##0.00")
+        expenseTV.text = decimalFormat.format(balanceCalc.calculateTotalExpenses())
+        incomeTV.text = decimalFormat.format(balanceCalc.calculateTotalIncome())
     }
 }

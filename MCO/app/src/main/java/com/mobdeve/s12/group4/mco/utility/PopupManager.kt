@@ -19,6 +19,9 @@ import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
 import com.mobdeve.s12.group4.mco.adapters.IconAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
+import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
+import com.mobdeve.s12.group4.mco.fragments.HomeFragment
+import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
 import com.mobdeve.s12.group4.mco.models.Account
 import com.mobdeve.s12.group4.mco.models.Category
 import com.mobdeve.s12.group4.mco.models.CustomDate
@@ -28,6 +31,9 @@ import java.util.Calendar
 
 class PopupManager(
     private val activity: AppCompatActivity,
+    private val homeFragment: HomeFragment,
+    private val recordsFragment: RecordsFragment,
+    private val categoryFragment: CategoryFragment,
     private val accountAdapter: AccountAdapter,
     private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
     private val accountSpinnerAdapter: SpinnerAdapter<Account>,
@@ -66,10 +72,10 @@ class PopupManager(
             if (accName.isEmpty() || initialAmt.isEmpty() || selectedIcon == null) {
                 Toast.makeText(activity, "Please fill all fields and select an icon.", Toast.LENGTH_SHORT).show()
             } else {
-                val newAccount = Account(accountAdapter.accounts.size + 1,
+                val newAccount = Account(accountAdapter.accounts.size + 1L,
                                         selectedIcon.imageID,
                                         accName,
-                                        initialAmt.toFloat(),
+                                        initialAmt.toDouble(),
                                         mutableListOf())
                 accountAdapter.addAccount(newAccount)
             }
@@ -170,7 +176,7 @@ class PopupManager(
             // Get the inputs
             val selectedAccount = accSpinner.selectedItem as Account
             val selectedCategory = categorySpinner.selectedItem as Category
-            val amount = amountEditText.text.toString().toFloatOrNull()
+            val amount = amountEditText.text.toString().toDoubleOrNull()
             val notes = notesEditText.text.toString()
             val transactionType = if (incomeTxtView.typeface == bold) "Income" else "Expense"
 
@@ -182,7 +188,7 @@ class PopupManager(
 
             // Create the Transaction object
             val transaction = Transaction(
-                recordsAdapter.originalList.size + 1,
+                recordsAdapter.originalList.size + 1L,
                 amount,
                 transactionType,
                 selectedCategory,
@@ -192,7 +198,6 @@ class PopupManager(
             )
 
             recordsAdapter.addItem(transaction)
-
 
             val account = transaction.account
             val category = transaction.category
@@ -206,9 +211,12 @@ class PopupManager(
                 account.setBalance(transaction.account.balance + transaction.amount)
             }
 
-
             val accountPosition = accountAdapter.accounts.indexOfFirst { it.id == account.id }
             accountAdapter.notifyItemChanged(accountPosition)
+
+            homeFragment.updateBalance()
+            categoryFragment.updateBalance()
+            recordsFragment.updateBalance()
 
             // Notify the user and close the popup
             Toast.makeText(activity, "Transaction saved!", Toast.LENGTH_SHORT).show()

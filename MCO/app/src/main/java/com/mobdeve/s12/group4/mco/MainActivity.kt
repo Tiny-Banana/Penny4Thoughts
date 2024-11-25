@@ -73,17 +73,15 @@ class MainActivity : AppCompatActivity() {
                                         { childList -> CategoryChildAdapter(childList) },
                                         filter)
         recordsAdapter = ParentAdapter(transacParent,
-                                            {it.section},
-                                            {it.list},
-                                            { childList -> TransacChildAdapter(childList) },
+                                        {it.section},
+                                        {it.transactions},
+                                        { childList -> TransacChildAdapter(childList) },
                                         filter)
 
         val homeFragment = HomeFragment(accountAdapter)
         val categoryFragment = CategoryFragment(categoryAdapter)
         val recordsFragment = RecordsFragment(recordsAdapter, filter)
         setCurrentFragment(homeFragment)
-
-
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -100,11 +98,14 @@ class MainActivity : AppCompatActivity() {
 
         popupManager = PopupManager(
                             this,
+                            homeFragment,
+                            recordsFragment,
+                            categoryFragment,
                             accountAdapter,
                             recordsAdapter,
                             accountSpinnerAdapter,
                             iconAdapter,
-                            categories
+                            categories,
                             )
         addBtn.setOnClickListener {
             showAddPopUp(it)
