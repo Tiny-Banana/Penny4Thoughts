@@ -39,17 +39,10 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize views
-        expenseTV = view.findViewById(R.id.monthlyExpense)
-        incomeTV = view.findViewById(R.id.monthlyIncome)
-        recordsRV = view.findViewById(R.id.recordsRV)
-        ivBracketLeft = view.findViewById(R.id.ivBracket1)
-        ivBracketRight = view.findViewById(R.id.ivBracket2)
-        date = view.findViewById(R.id.date)
+        initializeViews(view)
+        setupRecyclerView()
+        setupDateNavigation()
 
-        // Set up RecyclerView
-        recordsRV.adapter = recordsAdapter
-        recordsRV.layoutManager = LinearLayoutManager(requireContext())
 
         // Initialize current month and year from the system
         val calendar = Calendar.getInstance()
@@ -59,29 +52,43 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
         // Display transactions for the current month and year
         filterByMonth(currentMonth, currentYear)
         updateBalance()
+    }
 
-        // Setup arrow click listeners for month navigation
+    private fun initializeViews(view: View) {
+        expenseTV = view.findViewById(R.id.monthlyExpense)
+        incomeTV = view.findViewById(R.id.monthlyIncome)
+        recordsRV = view.findViewById(R.id.recordsRV)
+        ivBracketLeft = view.findViewById(R.id.ivBracket1)
+        ivBracketRight = view.findViewById(R.id.ivBracket2)
+        date = view.findViewById(R.id.date)
+    }
+
+    private fun setupRecyclerView() {
+        recordsRV.adapter = recordsAdapter
+        recordsRV.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun setupDateNavigation() {
         ivBracketLeft.setOnClickListener {
-            // Navigate to the previous month
-            currentMonth -= 1
-            if (currentMonth < 0) { // Wrap to December of the previous year
-                currentMonth = 11
-                currentYear -= 1
-            }
-            filterByMonth(currentMonth, currentYear)
-            updateBalance()
+            navigateMonth(-1)
         }
 
         ivBracketRight.setOnClickListener {
-            // Navigate to the next month
-            currentMonth += 1
-            if (currentMonth > 11) { // Wrap to January of the next year
-                currentMonth = 0
-                currentYear += 1
-            }
-            filterByMonth(currentMonth, currentYear)
-            updateBalance()
+            navigateMonth(1)
         }
+    }
+
+    private fun navigateMonth(monthDelta: Int) {
+        currentMonth += monthDelta
+        if (currentMonth < 0) {
+            currentMonth = 11
+            currentYear -= 1
+        } else if (currentMonth > 11) {
+            currentMonth = 0
+            currentYear += 1
+        }
+        filterByMonth(currentMonth, currentYear)
+        updateBalance()
     }
 
     private fun filterByMonth(currentMonth: Int, currentYear: Int) {
@@ -92,13 +99,19 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
             currentYear,
             recordsAdapter.originalList,
             recordsAdapter)
+
+        if (recordsAdapter.list.isEmpty()) {
+            view?.findViewById<TextView>(R.id.recordNoDataText)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<TextView>(R.id.recordNoDataText)?.visibility = View.GONE
+        }
     }
 
     fun updateBalance() {
         if (!this::recordsRV.isInitialized) return
 
-        val filteredList = recordsAdapter.list
-        val balanceCalc = BalanceCalculator(filteredList)
+        val transacParentList = recordsAdapter.list
+        val balanceCalc = BalanceCalculator(transacParentList)
         val decimalFormat = DecimalFormat("#,##0.00")
         expenseTV.text = decimalFormat.format(balanceCalc.calculateTotalExpenses())
         incomeTV.text = decimalFormat.format(balanceCalc.calculateTotalIncome())
