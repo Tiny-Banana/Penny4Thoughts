@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background of the progress bar -->
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@android:color/transparent"/>
+            <!-- Border -->
+            <stroke
+                android:color="@color/dark_green" android:width="2dp" />
+            <!-- Optional: Corner radius -->
+            <corners android:radius="8dp"/>
+
+        </shape>
+    </item>
+
+    <!-- Progress part of the progress bar -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="4dp" />
+                <solid android:color="@color/dark_green" /> <!-- Purple -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>
