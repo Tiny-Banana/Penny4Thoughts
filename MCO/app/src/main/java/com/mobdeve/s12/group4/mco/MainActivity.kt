@@ -14,11 +14,13 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
+import com.mobdeve.s12.group4.mco.adapters.AnalysisAdapter
 import com.mobdeve.s12.group4.mco.adapters.CategoryChildAdapter
 import com.mobdeve.s12.group4.mco.adapters.IconAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
 import com.mobdeve.s12.group4.mco.adapters.TransacChildAdapter
+import com.mobdeve.s12.group4.mco.fragments.AnalysisFragment
 import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var accountAdapter : AccountAdapter
     private lateinit var categoryAdapter: ParentAdapter<CategoryParent, Category>
     private lateinit var recordsAdapter: ParentAdapter<TransacParent, Transaction>
+    private lateinit var analysisAdapter: AnalysisAdapter
     private lateinit var accountSpinnerAdapter: SpinnerAdapter<com.mobdeve.s12.group4.mco.models.Account>
     private lateinit var iconAdapter: IconAdapter
 
@@ -77,10 +80,12 @@ class MainActivity : AppCompatActivity() {
                                         {it.transactions},
                                         { childList -> TransacChildAdapter(childList) },
                                         filter)
+        analysisAdapter = AnalysisAdapter(categories)
 
         val homeFragment = HomeFragment(accountAdapter)
         val categoryFragment = CategoryFragment(categoryAdapter)
         val recordsFragment = RecordsFragment(recordsAdapter, filter)
+        val analysisFragment = AnalysisFragment(analysisAdapter, filter)
         setCurrentFragment(homeFragment)
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -88,6 +93,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.record -> setCurrentFragment(recordsFragment)
                 R.id.category -> setCurrentFragment(categoryFragment)
+                R.id.analysis -> setCurrentFragment(analysisFragment)
             }
             true
         }
@@ -101,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                             homeFragment,
                             recordsFragment,
                             categoryFragment,
+                            analysisFragment,
                             accountAdapter,
                             recordsAdapter,
                             accountSpinnerAdapter,

@@ -19,6 +19,7 @@ import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
 import com.mobdeve.s12.group4.mco.adapters.IconAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
+import com.mobdeve.s12.group4.mco.fragments.AnalysisFragment
 import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
@@ -34,6 +35,7 @@ class PopupManager(
     private val homeFragment: HomeFragment,
     private val recordsFragment: RecordsFragment,
     private val categoryFragment: CategoryFragment,
+    private val analysisFragment: AnalysisFragment,
     private val accountAdapter: AccountAdapter,
     private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
     private val accountSpinnerAdapter: SpinnerAdapter<Account>,
@@ -217,6 +219,8 @@ class PopupManager(
             homeFragment.updateBalance()
             categoryFragment.updateBalance()
             recordsFragment.updateBalance()
+            analysisFragment.updateBalance()
+            analysisFragment.updateFilterPieChart()
 
             // Notify the user and close the popup
             Toast.makeText(activity, "Transaction saved!", Toast.LENGTH_SHORT).show()
