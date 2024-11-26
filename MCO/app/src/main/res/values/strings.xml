@@ -2,4 +2,9 @@
     <string name="app_name">MCO</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">CLose navigation drawer</string>
+
+    <string-array name="category_type">
+        <item>Income Overview</item>
+        <item>Expense Overview</item>
+    </string-array>
 </resources>

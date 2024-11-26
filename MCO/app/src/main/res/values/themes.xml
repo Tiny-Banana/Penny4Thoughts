@@ -14,5 +14,11 @@
         <item name="colorAccent">@color/dark_green</item>
     </style>
 
+    <style name="CustomSpinnerStyle">
+        <!-- Set font family for spinner items -->
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <!-- Set the text color for dropdown items -->
+        <item name="android:textColor">@color/primary_gray</item>  <!-- Change to your preferred color -->
+    </style>
     <style name="Theme.MCO" parent="Base.Theme.MCO" />
 </resources>
