@@ -13,11 +13,11 @@ import com.mobdeve.s12.group4.mco.models.Transaction
 class DataGenerator {
     companion object {
         // Define Categories
-        private val salary = Category(0, R.drawable.wallet, "Salary", "Income", mutableListOf())
-        private val grants = Category(1, R.drawable.giftbox, "Grants", "Income", mutableListOf())
-        private val education = Category(2, R.drawable.education, "Education", "Expense", mutableListOf())
-        private val health = Category(3, R.drawable.health, "Health", "Expense", mutableListOf())
-        private val food = Category(4, R.drawable.food, "Food", "Expense", mutableListOf())
+        private val salary = Category(0, R.drawable.wallet, "Salary", "Income", mutableListOf(), null)
+        private val grants = Category(1, R.drawable.giftbox, "Grants", "Income", mutableListOf(), null)
+        private val education = Category(2, R.drawable.education, "Education", "Expense", mutableListOf(), null)
+        private val health = Category(3, R.drawable.health, "Health", "Expense", mutableListOf(), null)
+        private val food = Category(4, R.drawable.food, "Food", "Expense", mutableListOf(), null)
 
         // Define Accounts
         private val accountChecking = Account(0, R.drawable.card, "Checking Account", 1000.0, mutableListOf())

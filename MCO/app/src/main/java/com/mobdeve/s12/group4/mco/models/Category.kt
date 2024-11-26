@@ -1,6 +1,9 @@
 package com.mobdeve.s12.group4.mco.models
 
-class Category(id: Int, imageId: Int, name: String, type: String, transactions: MutableList<Transaction>) {
+class Category(
+    id: Int, imageId: Int, name: String, type: String,
+    transactions: MutableList<Transaction>, budget: Budget?
+) {
     var id = id
         private set
 
@@ -14,6 +17,9 @@ class Category(id: Int, imageId: Int, name: String, type: String, transactions: 
         private set
 
     var transactions = transactions
+        private set
+
+    var budget = budget
         private set
 
     fun addTransaction(transaction: Transaction) {
