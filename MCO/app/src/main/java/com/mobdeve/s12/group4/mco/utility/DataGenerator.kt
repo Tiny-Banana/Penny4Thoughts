@@ -30,6 +30,8 @@ class DataGenerator {
         private val transaction3 = Transaction(2, 500.0, "Income", salary, accountChecking, "Paycheck day!", CustomDate(2024, 10, 23))
         private val transaction4 = Transaction(3, 20.0, "Expense", health, accountCash, "Gym break!", CustomDate(2024, 10, 23))
         private val transaction5 = Transaction(4, 20.0, "Income", grants, accountCash, "Won this gift card!", CustomDate(2024, 10, 23))
+        private val transaction6 = Transaction(5, 20.0, "Expense", education, accountCash, "Won this gift card!", CustomDate(2024, 10, 23))
+        private val transaction7 = Transaction(6, 20.0, "Expense", education, accountCash, "Won this gift card!", CustomDate(2024, 11, 23))
 
         // Define Icons
         private val icon1 = IconItem(R.drawable.pig, "#FFAAB9")
@@ -39,6 +41,8 @@ class DataGenerator {
         init {
             // Add transactions to categories
             education.addTransaction(transaction1)
+            education.addTransaction(transaction6)
+            education.addTransaction(transaction7)
             food.addTransaction(transaction2)
             salary.addTransaction(transaction3)
             health.addTransaction(transaction4)
@@ -90,7 +94,7 @@ class DataGenerator {
         fun generateTransacParent(): ArrayList<TransacParent> {
             // List of all transactions
             val transactions = listOf(
-                transaction1, transaction2, transaction3, transaction4, transaction5
+                transaction1, transaction2, transaction3, transaction4, transaction5, transaction6, transaction7
             )
 
             // Group transactions by the formatted date (using CustomDate.toStringFull() or any date format you prefer)
