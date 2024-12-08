@@ -286,7 +286,7 @@ class PopupManager() {
             val accountPosition = accountAdapter.accounts.indexOfFirst { it.id == account.id }
             accountAdapter.notifyItemChanged(accountPosition)
 
-            var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+            val budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
             if (budget != null) {
                 budget.spent += transaction.amount
                 budget.remaining -= transaction.amount

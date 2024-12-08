@@ -136,7 +136,7 @@ class BudgetChildAdapter(
     }
 
     private fun editBudget(category: Category, holder: RecyclerView.ViewHolder) {
-        var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+        val budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
 
         if (budget != null) {
             showBudgetPopup(category, holder, budget)
@@ -144,7 +144,7 @@ class BudgetChildAdapter(
     }
 
     private fun deleteBudget(category: Category) {
-        var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+        val budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
 
         if (budget != null) {
             category.removeBudget(budget)
