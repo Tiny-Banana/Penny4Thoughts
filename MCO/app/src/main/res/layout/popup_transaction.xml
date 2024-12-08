@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/dimOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80000000"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
-
+<!--    <View-->
+<!--        android:id="@+id/dimOverlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#80000000"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="0dp" />-->
 
     <View
         android:id="@+id/myRectangleView"
@@ -58,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spin_acc" />
 
     <TextView
-        android:id="@+id/budgetActionTitle"
+        android:id="@+id/transactionActionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -180,7 +179,7 @@
         android:textColor="@color/dark_green"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
-        app:layout_constraintTop_toBottomOf="@+id/budgetActionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/transactionActionTitle" />
 
     <TextView
         android:id="@+id/textView17"
@@ -207,7 +206,7 @@
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/budgetActionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/transactionActionTitle" />
 
     <TextView
         android:id="@+id/trans_date"

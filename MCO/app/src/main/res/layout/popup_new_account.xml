@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/dimOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80000000"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+<!--    <View-->
+<!--        android:id="@+id/dimOverlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#80000000"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="0dp" />-->
 
     <View
         android:id="@+id/myRectangleView"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.461" />
 
     <TextView
-        android:id="@+id/budgetActionTitle"
+        android:id="@+id/accountTitleAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
         android:background="@drawable/border_rectangle"
-        app:layout_constraintTop_toBottomOf="@+id/budgetActionTitle">
+        app:layout_constraintTop_toBottomOf="@+id/accountTitleAction">
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
