@@ -85,7 +85,7 @@ class BudgetChildAdapter(
                 holder.catBudgetedRem.text = decimalFormat.format(item.getBudgetForMonth(currentMonth, currentYear)?.remaining)
                 holder.catBudgetedSpent.text = decimalFormat.format(item.getBudgetForMonth(currentMonth, currentYear)?.spent)
                 holder.budgetedMore.setOnClickListener{
-                    showMoreBudgetPopup(item, holder as BudgetedHolder)
+                    showMoreBudgetPopup(item, holder)
                 }
             }
             is NotBudgetedHolder -> {
@@ -113,15 +113,14 @@ class BudgetChildAdapter(
         popupMenu.menuInflater.inflate(R.menu.popup_more, popupMenu.menu)
         popupMenu.gravity = Gravity.END
 
-
         //Set click listeners for the popup menu items
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.budgetEdit -> {
+                R.id.edit -> {
                     editBudget(category, budgetHolder)
                     true
                 }
-                R.id.budgetDelete -> {
+                R.id.delete -> {
                     deleteBudget(category)
                     true
                 }

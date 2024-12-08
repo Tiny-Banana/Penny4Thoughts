@@ -65,6 +65,19 @@ class IconAdapter(var icons: List<IconItem>) : RecyclerView.Adapter<IconAdapter.
         return if (selectedPosition != -1) icons[selectedPosition] else null
     }
 
+    fun selectIcon(imageID: Int) {
+        val position = icons.indexOfFirst { it.imageID == imageID }
+        if (position != -1) {
+            if (selectedPosition != -1) {
+                icons[selectedPosition].isSelected = false
+                notifyItemChanged(selectedPosition)
+            }
+            selectedPosition = position
+            icons[position].isSelected = true
+            notifyItemChanged(position)
+        }
+    }
+
     fun clearSelection() {
         if (selectedPosition != -1) {
             icons[selectedPosition].isSelected = false

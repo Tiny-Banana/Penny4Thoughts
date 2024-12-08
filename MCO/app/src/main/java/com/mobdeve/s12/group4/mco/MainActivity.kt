@@ -48,9 +48,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var analysisAdapter: AnalysisAdapter
     private lateinit var accountSpinnerAdapter: SpinnerAdapter<com.mobdeve.s12.group4.mco.models.Account>
     private lateinit var iconAdapter: IconAdapter
-
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var analysisFragment: AnalysisFragment
+    private lateinit var recordsFragment: RecordsFragment
+    private lateinit var categoryFragment: CategoryFragment
     private lateinit var budgetFragment: BudgetFragment
     private lateinit var budgetChildAdapter: BudgetChildAdapter
+    private lateinit var filter: Filter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        val filter = Filter()
+        filter = Filter()
 
         val accounts = DataGenerator.generateAccountData()
         val categories = DataGenerator.generateCategoryData()
@@ -73,11 +77,15 @@ class MainActivity : AppCompatActivity() {
         val icons = DataGenerator.generateIcons()
 
         iconAdapter = IconAdapter(icons)
-        accountAdapter = AccountAdapter(accounts)
+        accountAdapter = AccountAdapter(
+            this,
+            accounts,
+            iconAdapter)
         accountSpinnerAdapter = SpinnerAdapter(
-            this, accounts,
-                    { it.name },
-                    { it.imageId })
+            this,
+            accounts,
+            { it.name },
+            { it.imageId })
         categoryAdapter = ParentAdapter(categoryParent,
             {it.section},
             {it.list},
@@ -104,10 +112,10 @@ class MainActivity : AppCompatActivity() {
 
         analysisAdapter = AnalysisAdapter(categories)
 
-        val homeFragment = HomeFragment(accountAdapter)
-        val categoryFragment = CategoryFragment(categoryAdapter)
-        val recordsFragment = RecordsFragment(recordsAdapter, filter)
-        val analysisFragment = AnalysisFragment(analysisAdapter, filter)
+        homeFragment = HomeFragment(accountAdapter)
+        categoryFragment = CategoryFragment(categoryAdapter)
+        recordsFragment = RecordsFragment(recordsAdapter, filter)
+        analysisFragment = AnalysisFragment(analysisAdapter, filter)
         budgetFragment = BudgetFragment(budgetAdapter, filter)
         setCurrentFragment(homeFragment)
 
@@ -126,55 +134,25 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        popupManager = PopupManager(
-                            this,
-                            homeFragment,
-                            recordsFragment,
-                            categoryFragment,
-                            analysisFragment,
-                            budgetFragment,
-                            accountAdapter,
-                            recordsAdapter,
-                            budgetAdapter,
-                            accountSpinnerAdapter,
-                            iconAdapter,
-                            filter,
-                            categories,
-                            )
+        popupManager = PopupManager()
         addBtn.setOnClickListener {
-            showAddPopUp(it)
+            popupManager.showAddTransaction(
+                        this,
+                        homeFragment,
+                        recordsFragment,
+                        categoryFragment,
+                        analysisFragment,
+                        budgetFragment,
+                        accountAdapter,
+                        recordsAdapter,
+                        budgetAdapter,
+                        accountSpinnerAdapter,
+                        filter,
+                        categories
+                    )
         }
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-    }
-
-    private fun showAddPopUp(view: View) {
-        // Create a PopupMenu
-        val popupMenu = PopupMenu(this, view)
-
-        // Inflate the menu resource into the popup menu
-        popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
-
-        popupMenu.gravity = Gravity.END
-        //Set click listeners for the popup menu items
-        popupMenu.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.add_new_account -> {
-                    Toast.makeText(this, "Add New Account clicked", Toast.LENGTH_SHORT).show()
-                    popupManager.showAddAcc()
-                    true
-                }
-                R.id.add_transaction -> {
-                    Toast.makeText(this, "Add Transaction clicked", Toast.LENGTH_SHORT).show()
-                    popupManager.showAddTransaction()
-                    true
-                }
-                else -> false
-            }
-        }
-
-        // Show the popup menu
-        popupMenu.show()
     }
 
     private fun setCurrentFragment(fragment: Fragment) {
