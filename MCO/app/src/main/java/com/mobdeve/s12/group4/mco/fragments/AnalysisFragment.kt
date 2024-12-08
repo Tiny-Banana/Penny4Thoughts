@@ -170,13 +170,16 @@ class AnalysisFragment(
     }
 
     fun updateFilterPieChart() {
-        if (!this::analysisRV.isInitialized) return
+        if (!isAdded) return
 
         filter.applyFilter(currentMonth, currentYear, analysisAdapter)
         updatePieChart()
     }
 
     private fun setupPieChart(pieEntries: List<PieEntry>) {
+        val ctx = context ?: return
+        if (!isAdded) return
+
         if (pieEntries.isNotEmpty()) {
             val pieDataSet = PieDataSet(pieEntries, "")
             pieDataSet.colors = ColorTemplate.JOYFUL_COLORS.toList()
@@ -229,7 +232,7 @@ class AnalysisFragment(
     }
 
     fun updateBalance() {
-        if (!this::analysisRV.isInitialized) return
+        if (!isAdded) return
 
         filter.applyFilter(currentMonth, currentYear, analysisAdapter)
         val balanceCalc = BalanceCalculator(analysisAdapter.filteredDateTransactions)
