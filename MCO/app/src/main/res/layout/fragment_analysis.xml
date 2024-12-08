@@ -37,12 +37,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Nov 2024"
         android:textColor="@color/dark_green"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/ivBracket2"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toEndOf="@+id/ivBracket1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
