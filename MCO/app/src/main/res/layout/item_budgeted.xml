@@ -146,4 +146,14 @@
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <ImageView
+        android:id="@+id/budgetedMore"
+        android:layout_width="30dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ellipsis" />
 </androidx.constraintlayout.widget.ConstraintLayout>

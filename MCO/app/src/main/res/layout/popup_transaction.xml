@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spin_acc" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/budgetActionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -180,7 +180,7 @@
         android:textColor="@color/dark_green"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/myRectangleView"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/budgetActionTitle" />
 
     <TextView
         android:id="@+id/textView17"
@@ -207,7 +207,7 @@
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/budgetActionTitle" />
 
     <TextView
         android:id="@+id/trans_date"

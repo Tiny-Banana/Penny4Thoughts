@@ -2,7 +2,9 @@ package com.mobdeve.s12.group4.mco.models
 
 class Budget(limit: Double, spent: Double, remaining: Double, month: Int, year: Int) {
     var limit = limit
-        private set
+        set(value) {
+            field = value
+        }
 
     var spent = spent
         set(value) {

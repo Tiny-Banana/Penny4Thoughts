@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.mobdeve.s12.group4.mco.R
@@ -34,6 +35,7 @@ class BudgetChildAdapter(
         val catBudgetedLimit: TextView = itemView.findViewById(R.id.catBudgetedLimit)
         val catBudgetedSpent: TextView = itemView.findViewById(R.id.catBudgetedSpent)
         val catBudgetedRem: TextView = itemView.findViewById(R.id.catBudgetedRem)
+        val budgetedMore: ImageView = itemView.findViewById(R.id.budgetedMore)
     }
 
     inner class NotBudgetedHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -82,12 +84,15 @@ class BudgetChildAdapter(
                 holder.catBudgetedLimit.text = decimalFormat.format(item.getBudgetForMonth(currentMonth, currentYear)?.limit)
                 holder.catBudgetedRem.text = decimalFormat.format(item.getBudgetForMonth(currentMonth, currentYear)?.remaining)
                 holder.catBudgetedSpent.text = decimalFormat.format(item.getBudgetForMonth(currentMonth, currentYear)?.spent)
+                holder.budgetedMore.setOnClickListener{
+                    showMoreBudgetPopup(item, holder as BudgetedHolder)
+                }
             }
             is NotBudgetedHolder -> {
                 holder.catNBudgetedName.text = item.name
                 holder.catNBudgetedImg.setImageResource(item.imageId)
                 holder.catNBudgetedBtn.setOnClickListener{
-                    showAddBudgetPopup(item, holder)
+                    addBudget(item, holder)
                 }
             }
         }
@@ -101,31 +106,86 @@ class BudgetChildAdapter(
         this.budgetFragment = budgetFragment
     }
 
-    private fun showAddBudgetPopup(item: Category, holder: RecyclerView.ViewHolder) {
+    private fun showMoreBudgetPopup(category: Category, budgetHolder: BudgetedHolder) {
+        val popupMenu = PopupMenu(budgetHolder.itemView.context, budgetHolder.budgetedMore)
+
+        // Inflate the menu resource into the popup menu
+        popupMenu.menuInflater.inflate(R.menu.popup_more, popupMenu.menu)
+        popupMenu.gravity = Gravity.END
+
+
+        //Set click listeners for the popup menu items
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.budgetEdit -> {
+                    editBudget(category, budgetHolder)
+                    true
+                }
+                R.id.budgetDelete -> {
+                    deleteBudget(category)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
+    }
+
+    private fun addBudget(category: Category, holder: RecyclerView.ViewHolder) {
+        showBudgetPopup(category, holder, null)
+    }
+
+    private fun editBudget(category: Category, holder: RecyclerView.ViewHolder) {
+        var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+
+        if (budget != null) {
+            showBudgetPopup(category, holder, budget)
+        }
+    }
+
+    private fun deleteBudget(category: Category) {
+        var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+
+        if (budget != null) {
+            category.removeBudget(budget)
+        }
+
+        filter.filterCategoryBudget(filter.selectedMonthNum, filter.selectedYear, parentAdapter)
+        budgetFragment.updateBudget()
+    }
+
+    private fun showBudgetPopup(category: Category, holder: RecyclerView.ViewHolder, existingBudget: Budget?) {
         val popupView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.popup_budget, null)
         val popupBudgetImg = popupView.findViewById<ImageView>(R.id.popupBudgetImg)
         val popupBudgetName = popupView.findViewById<TextView>(R.id.popupBudgetName)
         val popupBudgetMonth = popupView.findViewById<TextView>(R.id.popupBudgetMonth)
         val popupBudgetYear = popupView.findViewById<TextView>(R.id.popupBudgetYear)
+        val budgetAction = popupView.findViewById<TextView>(R.id.budgetActionTitle)
         val saveBtn = popupView.findViewById<MaterialButton>(R.id.budgetSave)
         val cancelBtn = popupView.findViewById<MaterialButton>(R.id.budgetCancel)
         val limitEditTxt = popupView.findViewById<EditText>(R.id.budget_limit)
 
         val popupWindow = PopupWindow(
-            popupView,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
+                popupView,
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.MATCH_PARENT
         )
 
-        popupBudgetImg.setImageResource(item.imageId)
-        popupBudgetName.text = item.name
+        popupBudgetImg.setImageResource(category.imageId)
+        popupBudgetName.text = category.name
         popupBudgetMonth.text = filter.selectedMonth
         popupBudgetYear.text = filter.selectedYear.toString()
 
+        // If there's an existing budget, populate the fields for editing
+        if (existingBudget != null) {
+            limitEditTxt.setText(existingBudget.limit.toString())
+            budgetAction.text = "Edit Budget"
+        }
+
         popupWindow.isFocusable = true
         popupWindow.update()
-        val rootView = holder.itemView.rootView // Access the root view of the item
-        popupWindow.showAtLocation(rootView, Gravity.CENTER, 0, 0)
+        popupWindow.showAtLocation(holder.itemView.rootView, Gravity.CENTER, 0, 0)
 
         cancelBtn.setOnClickListener {
             popupWindow.dismiss()
@@ -136,13 +196,19 @@ class BudgetChildAdapter(
             if (limit.isEmpty()) {
                 Toast.makeText(holder.itemView.context, "Please fill all fields and select an icon.", Toast.LENGTH_SHORT).show()
             } else {
-                val newBudget = Budget(limit.toDouble(), 0.0, limit.toDouble(), filter.selectedMonthNum, filter.selectedYear)
-                item.addBudget(newBudget)
+                if (existingBudget == null) {
+                    // If it's a new budget
+                    val newBudget = Budget(limit.toDouble(), 0.0, limit.toDouble(), filter.selectedMonthNum, filter.selectedYear)
+                    category.addBudget(newBudget)
+                } else {
+                    existingBudget.limit = limit.toDouble()
+                    existingBudget.remaining = existingBudget.limit - existingBudget.spent
+                }
                 filter.filterCategoryBudget(filter.selectedMonthNum, filter.selectedYear, parentAdapter)
                 budgetFragment.updateBudget()
+                popupWindow.dismiss()
             }
-
-            popupWindow.dismiss()
         }
+
     }
 }

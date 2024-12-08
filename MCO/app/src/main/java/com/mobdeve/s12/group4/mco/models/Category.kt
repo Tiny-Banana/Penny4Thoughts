@@ -31,6 +31,10 @@ class Category(
         budgets.add(budget)
     }
 
+    fun removeBudget(budget: Budget) {
+        budgets.remove(budget)
+    }
+
     fun getBudgetForMonth(month: Int, year: Int): Budget? {
         return budgets.find { it.month == month && it.year == year }
     }
