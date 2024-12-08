@@ -135,7 +135,7 @@ class DataGenerator {
 
             // Map the grouped data into TransacParent objects
             val transacParents = groupedTransactions.map { (date, transactionList) ->
-                TransacParent(section = date, transactions = transactionList.toMutableList())
+                TransacParent(section = date, list = transactionList.toMutableList())
             }
 
             Log.d("GroupedTransactions", "Grouped Transactions: $groupedTransactions")

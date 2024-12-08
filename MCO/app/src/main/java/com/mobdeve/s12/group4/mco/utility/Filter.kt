@@ -1,6 +1,5 @@
 package com.mobdeve.s12.group4.mco.utility
 
-import android.util.Log
 import com.mobdeve.s12.group4.mco.adapters.AnalysisAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.models.Category
@@ -44,10 +43,10 @@ class Filter {
                     false
                 }
             }.map { parent ->
-                val sortedChildren = parent.transactions.sortedBy { it.createdAt.day_in_month }
-                parent.copy(transactions = ArrayList(sortedChildren))
+                val sortedChildren = parent.list.sortedBy { it.createdAt.day_in_month }
+                parent.copy(list = ArrayList(sortedChildren))
             }.sortedBy { parent ->
-                parent.transactions.firstOrNull()?.createdAt?.day_in_month ?: 0
+                parent.list.firstOrNull()?.createdAt?.day_in_month ?: 0
             }
 
             adapter.updateFilteredList(ArrayList(filteredTransacParents))

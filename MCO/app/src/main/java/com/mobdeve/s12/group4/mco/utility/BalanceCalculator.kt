@@ -10,7 +10,7 @@ class BalanceCalculator<T : Any>(private val transacsSource: List<T>) {
     private val allTransactions: List<Transaction>
         get() = transacsSource.flatMap {
             when (it) {
-                is TransacParent -> it.transactions
+                is TransacParent -> it.list
                 is Account -> it.transactions
                 is Category -> it.transactions
                 is Transaction -> listOf(it)
