@@ -55,7 +55,7 @@ class ParentAdapter<T : Any, U : Any>(
 
                 if (existingParent != null) {
                     // Add the transaction to the existing parent's child list
-                    existingParent.transactions.add(item)
+                    existingParent.list.add(item)
                 } else {
                     // Create a new parent and add it to the list
                     val newParent = TransacParent(section, arrayListOf(item))
@@ -65,7 +65,7 @@ class ParentAdapter<T : Any, U : Any>(
                 // Pass the entire parent list
                 filter.applyFilter(filter.selectedMonth,
                     filter.selectedYear,
-                    parentList, // Pass a list of one item
+                    parentList,
                     this as ParentAdapter<TransacParent, Transaction>)
             }
         }
@@ -73,13 +73,25 @@ class ParentAdapter<T : Any, U : Any>(
 
     fun updateFilteredList(newList: List<T>) {
         list = newList as ArrayList<T> // Update filtered list
+        removeEmptySection()
         notifyDataSetChanged() // Refresh the adapter with the filtered list
+    }
+
+    private fun removeEmptySection() {
+        list.removeIf { parent ->
+            val childList = when (parent) {
+                is CategoryParent -> parent.list
+                is TransacParent -> parent.list
+                else -> null // Handle unexpected parent types
+            }
+            childList?.isEmpty() == true // Remove parent if child list is empty
+        }
     }
 
     fun getChildList(): List<Any> {
         return originalList.flatMap {
             when (it) {
-                is TransacParent -> it.transactions
+                is TransacParent -> it.list
                 is CategoryParent -> it.list
                 else -> emptyList()
             }

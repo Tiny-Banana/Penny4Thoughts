@@ -48,6 +48,10 @@ class SpinnerAdapter<T : Any>(var context: Context, var items: ArrayList<T>,
         return view
     }
 
+    fun returnList() : ArrayList<T>{
+        return items
+    }
+
     // ViewHolder class for caching views
     private class ViewHolder(view: View) {
         val name: TextView = view.findViewById(R.id.spin_name)

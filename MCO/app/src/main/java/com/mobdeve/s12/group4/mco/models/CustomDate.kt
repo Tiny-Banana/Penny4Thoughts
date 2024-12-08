@@ -36,6 +36,10 @@ class CustomDate {
         return monthString[month] + " " + day_in_month
     }
 
+    fun toStringMonth(): String {
+        return monthString[month]
+    }
+
     companion object {
         private val monthString = arrayOf(
             "Jan",

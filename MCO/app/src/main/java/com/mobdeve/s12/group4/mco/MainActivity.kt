@@ -1,13 +1,9 @@
 package com.mobdeve.s12.group4.mco
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -53,8 +49,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recordsFragment: RecordsFragment
     private lateinit var categoryFragment: CategoryFragment
     private lateinit var budgetFragment: BudgetFragment
-    private lateinit var budgetChildAdapter: BudgetChildAdapter
     private lateinit var filter: Filter
+    private lateinit var budgetChildAdapter: BudgetChildAdapter
+    private lateinit var transacChildAdapter: TransacChildAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         filter = Filter()
+        popupManager = PopupManager()
 
         val accounts = DataGenerator.generateAccountData()
         val categories = DataGenerator.generateCategoryData()
@@ -93,8 +91,26 @@ class MainActivity : AppCompatActivity() {
             filter)
         recordsAdapter = ParentAdapter(transacParent,
             {it.section},
-            {it.transactions},
-            { childList -> TransacChildAdapter(childList) },
+            {it.list},
+            { childList ->
+                transacChildAdapter = TransacChildAdapter(
+                    recordsAdapter,
+                    childList,
+                    filter,
+                    this,
+                    homeFragment,
+                    recordsFragment,
+                    categoryFragment,
+                    analysisFragment,
+                    budgetFragment,
+                    accountAdapter,
+                    recordsAdapter,
+                    budgetAdapter,
+                    accountSpinnerAdapter,
+                    categories)
+                transacChildAdapter.setFragment(recordsFragment)
+                transacChildAdapter
+            },
             filter)
         budgetAdapter = ParentAdapter(
             budgetParent,
@@ -134,9 +150,8 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        popupManager = PopupManager()
         addBtn.setOnClickListener {
-            popupManager.showAddTransaction(
+            popupManager.showTransactionPopup(
                         this,
                         homeFragment,
                         recordsFragment,
@@ -148,7 +163,8 @@ class MainActivity : AppCompatActivity() {
                         budgetAdapter,
                         accountSpinnerAdapter,
                         filter,
-                        categories
+                        categories,
+                        null
                     )
         }
 

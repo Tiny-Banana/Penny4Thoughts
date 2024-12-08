@@ -1,8 +1,13 @@
 package com.mobdeve.s12.group4.mco.utility
 
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupWindow
@@ -33,55 +38,9 @@ import com.mobdeve.s12.group4.mco.models.Transaction
 import java.util.Calendar
 
 class PopupManager() {
-    fun showAddAcc(activity: AppCompatActivity, accountAdapter: AccountAdapter, iconAdapter: IconAdapter) {
-        val popupView = activity.layoutInflater.inflate(R.layout.popup_new_account, null)
-        val accNameEditText = popupView.findViewById<EditText>(R.id.acc_name)
-        val initialAmtEditText = popupView.findViewById<EditText>(R.id.acc_amt)
-        val saveBtn = popupView.findViewById<MaterialButton>(R.id.trans_saveBtn)
-        val cancelBtn = popupView.findViewById<MaterialButton>(R.id.trans_cancelBtn)
-        val iconsRV = popupView.findViewById<RecyclerView>(R.id.acc_popup_rv)
-
-        // Create the PopupWindow
-        val popupWindow = PopupWindow(
-            popupView,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-
-        popupWindow.isFocusable = true
-        popupWindow.update()
-        popupWindow.showAtLocation(activity.findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
-
-        cancelBtn.setOnClickListener {
-            popupWindow.dismiss()
-            iconAdapter.clearSelection()
-        }
-        saveBtn.setOnClickListener {
-            val accName = accNameEditText.text.toString().trim()
-            val initialAmt = initialAmtEditText.text.toString().trim()
-            val selectedIcon = iconAdapter.getSelectedIcon()
-
-            if (accName.isEmpty() || initialAmt.isEmpty() || selectedIcon == null) {
-                Toast.makeText(activity, "Please fill all fields and select an icon.", Toast.LENGTH_SHORT).show()
-            } else {
-                val newAccount = Account(accountAdapter.accounts.size + 1L,
-                                        selectedIcon.imageID,
-                                        accName,
-                                        initialAmt.toDouble(),
-                                        mutableListOf())
-                accountAdapter.addToAccounts(newAccount)
-            }
-
-            popupWindow.dismiss()
-            iconAdapter.clearSelection()
-        }
-
-        iconsRV.adapter = iconAdapter
-        iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-    }
-
     fun showAccountPopup(activity: AppCompatActivity, accountAdapter: AccountAdapter, iconAdapter: IconAdapter, account: Account?, position: Int) {
         val popupView = activity.layoutInflater.inflate(R.layout.popup_new_account, null)
+        val accAction = popupView.findViewById<TextView>(R.id.accountTitleAction)
         val accNameEditText = popupView.findViewById<EditText>(R.id.acc_name)
         val initialAmtEditText = popupView.findViewById<EditText>(R.id.acc_amt)
         val saveBtn = popupView.findViewById<MaterialButton>(R.id.trans_saveBtn)
@@ -98,16 +57,26 @@ class PopupManager() {
         popupWindow.isFocusable = true
         popupWindow.update()
         popupWindow.showAtLocation(activity.findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
+
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Apply dim effect to the background
+        val window = activity.window
+        val layoutParams = window.attributes
+        layoutParams.alpha = 0.7f // Adjust the dim level (1.0 is fully bright, 0.0 is completely dimmed)
+        window.attributes = layoutParams
+
+        popupShow(popupView)
 
         // Pre-fill the fields if editing an existing account
         if (account != null) {
+            accAction.text = "Edit account"
             accNameEditText.setText(account.name)
             initialAmtEditText.setText(account.balance.toString())
             iconAdapter.selectIcon(account.imageId)
         }
 
         cancelBtn.setOnClickListener {
-            popupWindow.dismiss()
+            popupDismiss(popupView, popupWindow, window, layoutParams)
             iconAdapter.clearSelection()
         }
 
@@ -138,7 +107,7 @@ class PopupManager() {
                 }
             }
 
-            popupWindow.dismiss()
+            popupDismiss(popupView, popupWindow, window, layoutParams)
             iconAdapter.clearSelection()
         }
 
@@ -146,8 +115,7 @@ class PopupManager() {
         iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
-
-    fun showAddTransaction(
+    fun showTransactionPopup(
         activity: AppCompatActivity,
         homeFragment: HomeFragment,
         recordsFragment: RecordsFragment,
@@ -159,7 +127,8 @@ class PopupManager() {
         budgetAdapter: ParentAdapter<CategoryParent, Category>,
         accountSpinnerAdapter: SpinnerAdapter<Account>,
         filter: Filter,
-        categories: ArrayList<Category>
+        categories: ArrayList<Category>,
+        transaction: Transaction?
     ) {
         val regular = Typeface.DEFAULT
         val bold = ResourcesCompat.getFont(activity, R.font.poppins_bold)
@@ -173,6 +142,7 @@ class PopupManager() {
         val dateTxtView = popupView.findViewById<TextView>(R.id.trans_date)
         val notesEditText = popupView.findViewById<EditText>(R.id.trans_notes)
         val amountEditText = popupView.findViewById<EditText>(R.id.trans_amt)
+        val action = popupView.findViewById<TextView>(R.id.transactionActionTitle)
 
         // Create the PopupWindow
         val popupWindow = PopupWindow(
@@ -184,6 +154,15 @@ class PopupManager() {
         popupWindow.isFocusable = true
         popupWindow.update()
         popupWindow.showAtLocation(activity.findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
+
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Apply dim effect to the background
+        val window = activity.window
+        val layoutParams = window.attributes
+        layoutParams.alpha = 0.7f // Adjust the dim level (1.0 is fully bright, 0.0 is completely dimmed)
+        window.attributes = layoutParams
+
+        popupShow(popupView)
 
         accSpinner.adapter = accountSpinnerAdapter
 
@@ -240,8 +219,30 @@ class PopupManager() {
             datePickerDialog.show()
         }
 
+        // Pre-fill data if editing
+        if (transaction != null) {
+            // Populate fields with the current transaction's data
+            if (transaction.type == "Expense") {
+                expenseTxtView.typeface = bold
+                incomeTxtView.typeface = regular
+                categorySpinner.adapter = expenseCategorySpinnerAdapter
+                categorySpinner.setSelection(expenseCategorySpinnerAdapter.returnList().indexOf(transaction.category))
+            } else {
+                incomeTxtView.typeface = bold
+                expenseTxtView.typeface = regular
+                categorySpinner.adapter = incomeCategorySpinnerAdapter
+                categorySpinner.setSelection(incomeCategorySpinnerAdapter.returnList().indexOf(transaction.category))
+            }
+
+            accSpinner.setSelection(accountAdapter.accounts.indexOf(transaction.account))
+            amountEditText.setText(transaction.amount.toString())
+            notesEditText.setText(transaction.notes)
+            dateTxtView.text = transaction.createdAt.toStringFull()
+            action.text = "Edit transaction"
+        }
+
         cancelBtn.setOnClickListener {
-            popupWindow.dismiss()
+            popupDismiss(popupView, popupWindow, window, layoutParams)
         }
 
         saveBtn.setOnClickListener {
@@ -258,38 +259,52 @@ class PopupManager() {
                 return@setOnClickListener
             }
 
-            // Create the Transaction object
-            val transaction = Transaction(
-                recordsAdapter.originalList.size + 1L,
-                amount,
-                transactionType,
-                selectedCategory,
-                selectedAccount,
-                notes,
-                selectedDate
+            val transactionToUpdate = transaction ?: Transaction(
+                id = recordsAdapter.originalList.size + 1L,
+                amount = amount,
+                type = transactionType,
+                category = selectedCategory,
+                account = selectedAccount,
+                notes = notes,
+                createdAt = selectedDate
             )
 
-            recordsAdapter.addItem(transaction)
-
-            val account = transaction.account
-            val category = transaction.category
-
-            account.addTransaction(transaction)
-            category.addTransaction(transaction)
-
-            if (transaction.type == "Expense") {
-                account.balance = transaction.account.balance - transaction.amount
+            if (transaction == null) {
+                // Adding a new transaction
+                recordsAdapter.addItem(transactionToUpdate)
+                selectedAccount.addTransaction(transactionToUpdate)
+                selectedCategory.addTransaction(transactionToUpdate)
             } else {
-                account.balance = transaction.account.balance + transaction.amount
+                // Editing an existing transaction
+                with(transactionToUpdate) {
+                    this.amount = amount
+                    this.type = transactionType
+                    this.category = selectedCategory
+                    this.account = selectedAccount
+                    this.notes = notes
+                    this.createdAt = selectedDate
+                }
+                selectedAccount.updateTransaction(transactionToUpdate)
+                selectedCategory.updateTransaction(transactionToUpdate)
+                recordsAdapter.notifyDataSetChanged()
             }
 
-            val accountPosition = accountAdapter.accounts.indexOfFirst { it.id == account.id }
-            accountAdapter.notifyItemChanged(accountPosition)
+            // Update account balance
+            selectedAccount.balance = if (transactionToUpdate.type == "Expense") {
+                transactionToUpdate.account.balance - transactionToUpdate.amount
+            } else {
+                transactionToUpdate.account.balance + transactionToUpdate.amount
+            }
 
-            val budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
-            if (budget != null) {
-                budget.spent += transaction.amount
-                budget.remaining -= transaction.amount
+            // Notify account adapter
+            accountAdapter.accounts.indexOfFirst { it.id == selectedAccount.id }
+                .takeIf { it != -1 }
+                ?.let { accountAdapter.notifyItemChanged(it) }
+
+            // Update budget
+            selectedCategory.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)?.let { budget ->
+                budget.spent += transactionToUpdate.amount
+                budget.remaining -= transactionToUpdate.amount
                 budgetAdapter.notifyDataSetChanged()
             }
 
@@ -302,7 +317,35 @@ class PopupManager() {
 
             // Notify the user and close the popup
             Toast.makeText(activity, "Transaction saved!", Toast.LENGTH_SHORT).show()
-            popupWindow.dismiss()
+
+            popupDismiss(popupView, popupWindow, window, layoutParams)
         }
+    }
+
+    fun popupDismiss(popupView: View, popupWindow: PopupWindow, window: Window, layoutParams: WindowManager.LayoutParams) {
+        popupView.animate()
+            .translationY(1000f)  // Slide down off-screen
+            .alpha(0f)            // Fade out
+            .setDuration(400)     // Duration of animation
+            .withEndAction {
+                // Dismiss the popup after animation is complete
+                popupWindow.dismiss()
+            }
+            .start()
+
+        layoutParams.alpha = 1.0f
+        window.attributes = layoutParams
+    }
+
+    fun popupShow(popupView: View) {
+        // Set initial position off-screen
+        popupView.translationY = 1000f  // Moves the popup down off-screen (adjust as needed)
+
+        // Fade in and slide up animation
+        popupView.animate()
+            .translationY(0f)  // Slide up to its original position
+            .alpha(1f)         // Fade in
+            .setDuration(400)  // Duration of animation
+            .start()
     }
 }

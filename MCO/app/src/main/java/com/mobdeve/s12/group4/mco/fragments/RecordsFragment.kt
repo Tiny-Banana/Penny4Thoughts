@@ -100,6 +100,10 @@ class RecordsFragment(private val recordsAdapter: ParentAdapter<TransacParent, T
             recordsAdapter.originalList,
             recordsAdapter)
 
+        listEmpty()
+    }
+
+    fun listEmpty() {
         if (recordsAdapter.list.isEmpty()) {
             view?.findViewById<TextView>(R.id.recordNoDataText)?.visibility = View.VISIBLE
         } else {
