@@ -2,7 +2,8 @@ package com.mobdeve.s12.group4.mco.models
 
 class Category(
     id: Int, imageId: Int, name: String, type: String,
-    transactions: MutableList<Transaction>, budget: Budget?
+    transactions: MutableList<Transaction> = mutableListOf(),
+    budgets: MutableList<Budget> = mutableListOf()
 ) {
     var id = id
         private set
@@ -19,10 +20,18 @@ class Category(
     var transactions = transactions
         private set
 
-    var budget = budget
+    var budgets = budgets
         private set
 
     fun addTransaction(transaction: Transaction) {
         transactions.add(transaction)
+    }
+
+    fun addBudget(budget: Budget) {
+        budgets.add(budget)
+    }
+
+    fun getBudgetForMonth(month: Int, year: Int): Budget? {
+        return budgets.find { it.month == month && it.year == year }
     }
 }
