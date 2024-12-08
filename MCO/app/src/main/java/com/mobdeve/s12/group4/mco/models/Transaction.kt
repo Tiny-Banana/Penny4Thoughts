@@ -7,20 +7,32 @@ class Transaction(id : Long, amount: Double, type: String, category: Category,
         private set
 
     var amount = amount
-        private set
+        set(value) {
+            field = value
+        }
 
     var type = type
-        private set
+        set(value) {
+            field = value
+        }
 
     var category = category
-        private set
+        set(value) {
+            field = value
+        }
 
     var account = account
-        private set
+        set(value) {
+            field = value
+        }
 
     var notes = notes
-        private set
+        set(value) {
+            field = value
+        }
 
     var createdAt = createdAt
-        private set
+        set(value) {
+            field = value
+        }
 }

@@ -22,6 +22,15 @@ class Account(id: Long, imageId: Int, name: String, balance: Double, transaction
     var transactions = transactions
         private set
 
+    fun updateTransaction(updatedTransaction: Transaction) {
+        // Find the transaction by ID or any other unique identifier
+        val index = transactions.indexOfFirst { it.id == updatedTransaction.id }
+        if (index != -1) {
+            // Update the transaction at the found index
+            transactions[index] = updatedTransaction
+        }
+    }
+
     fun addTransaction(transaction: Transaction) {
         transactions.add(transaction)
     }
