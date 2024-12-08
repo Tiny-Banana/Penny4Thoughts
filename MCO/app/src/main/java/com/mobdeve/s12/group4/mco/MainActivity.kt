@@ -15,12 +15,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobdeve.s12.group4.mco.adapters.AccountAdapter
 import com.mobdeve.s12.group4.mco.adapters.AnalysisAdapter
+import com.mobdeve.s12.group4.mco.adapters.BudgetChildAdapter
 import com.mobdeve.s12.group4.mco.adapters.CategoryChildAdapter
 import com.mobdeve.s12.group4.mco.adapters.IconAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
 import com.mobdeve.s12.group4.mco.adapters.TransacChildAdapter
 import com.mobdeve.s12.group4.mco.fragments.AnalysisFragment
+import com.mobdeve.s12.group4.mco.fragments.BudgetFragment
 import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
@@ -41,10 +43,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var popupManager: PopupManager
     private lateinit var accountAdapter : AccountAdapter
     private lateinit var categoryAdapter: ParentAdapter<CategoryParent, Category>
+    private lateinit var budgetAdapter: ParentAdapter<CategoryParent, Category>
     private lateinit var recordsAdapter: ParentAdapter<TransacParent, Transaction>
     private lateinit var analysisAdapter: AnalysisAdapter
     private lateinit var accountSpinnerAdapter: SpinnerAdapter<com.mobdeve.s12.group4.mco.models.Account>
     private lateinit var iconAdapter: IconAdapter
+
+    private lateinit var budgetFragment: BudgetFragment
+    private lateinit var budgetChildAdapter: BudgetChildAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,35 +63,52 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
+        val filter = Filter()
+
         val accounts = DataGenerator.generateAccountData()
         val categories = DataGenerator.generateCategoryData()
         val categoryParent = DataGenerator.generateCategoryParent()
+        val budgetParent = DataGenerator.generateBudgetParent(filter.selectedMonthNum, filter.selectedYear)
         val transacParent = DataGenerator.generateTransacParent()
         val icons = DataGenerator.generateIcons()
 
-        val filter = Filter()
-
         iconAdapter = IconAdapter(icons)
         accountAdapter = AccountAdapter(accounts)
-        accountSpinnerAdapter = SpinnerAdapter(this, accounts,
-                                                { it.name },
-                                                { it.imageId })
+        accountSpinnerAdapter = SpinnerAdapter(
+            this, accounts,
+                    { it.name },
+                    { it.imageId })
         categoryAdapter = ParentAdapter(categoryParent,
-                                        {it.section},
-                                        {it.list},
-                                        { childList -> CategoryChildAdapter(childList) },
-                                        filter)
+            {it.section},
+            {it.list},
+            { childList -> CategoryChildAdapter(childList) },
+            filter)
         recordsAdapter = ParentAdapter(transacParent,
-                                        {it.section},
-                                        {it.transactions},
-                                        { childList -> TransacChildAdapter(childList) },
-                                        filter)
+            {it.section},
+            {it.transactions},
+            { childList -> TransacChildAdapter(childList) },
+            filter)
+        budgetAdapter = ParentAdapter(
+            budgetParent,
+            { it.section },
+            { it.list },
+            { childList ->
+                //save adapter so we can set the fragment in the budgetchildadapter
+                budgetChildAdapter = BudgetChildAdapter(budgetAdapter, childList, filter)
+                //will execute after the budgetfragment is initialized
+                budgetChildAdapter.setFragment(budgetFragment)
+                budgetChildAdapter
+            },
+            filter
+        )
+
         analysisAdapter = AnalysisAdapter(categories)
 
         val homeFragment = HomeFragment(accountAdapter)
         val categoryFragment = CategoryFragment(categoryAdapter)
         val recordsFragment = RecordsFragment(recordsAdapter, filter)
         val analysisFragment = AnalysisFragment(analysisAdapter, filter)
+        budgetFragment = BudgetFragment(budgetAdapter, filter)
         setCurrentFragment(homeFragment)
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -94,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.record -> setCurrentFragment(recordsFragment)
                 R.id.category -> setCurrentFragment(categoryFragment)
                 R.id.analysis -> setCurrentFragment(analysisFragment)
+                R.id.budget -> setCurrentFragment(budgetFragment)
             }
             true
         }
@@ -108,10 +132,13 @@ class MainActivity : AppCompatActivity() {
                             recordsFragment,
                             categoryFragment,
                             analysisFragment,
+                            budgetFragment,
                             accountAdapter,
                             recordsAdapter,
+                            budgetAdapter,
                             accountSpinnerAdapter,
                             iconAdapter,
+                            filter,
                             categories,
                             )
         addBtn.setOnClickListener {

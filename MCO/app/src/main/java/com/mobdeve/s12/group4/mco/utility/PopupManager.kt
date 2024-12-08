@@ -3,7 +3,9 @@ package com.mobdeve.s12.group4.mco.utility
 import android.app.DatePickerDialog
 import android.graphics.Typeface
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Spinner
@@ -20,11 +22,14 @@ import com.mobdeve.s12.group4.mco.adapters.IconAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.adapters.SpinnerAdapter
 import com.mobdeve.s12.group4.mco.fragments.AnalysisFragment
+import com.mobdeve.s12.group4.mco.fragments.BudgetFragment
 import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
 import com.mobdeve.s12.group4.mco.models.Account
+import com.mobdeve.s12.group4.mco.models.Budget
 import com.mobdeve.s12.group4.mco.models.Category
+import com.mobdeve.s12.group4.mco.models.CategoryParent
 import com.mobdeve.s12.group4.mco.models.CustomDate
 import com.mobdeve.s12.group4.mco.models.TransacParent
 import com.mobdeve.s12.group4.mco.models.Transaction
@@ -36,10 +41,13 @@ class PopupManager(
     private val recordsFragment: RecordsFragment,
     private val categoryFragment: CategoryFragment,
     private val analysisFragment: AnalysisFragment,
+    private val budgetFragment: BudgetFragment,
     private val accountAdapter: AccountAdapter,
     private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
+    private val budgetAdapter: ParentAdapter<CategoryParent, Category>,
     private val accountSpinnerAdapter: SpinnerAdapter<Account>,
     private val iconAdapter: IconAdapter,
+    private val filter: Filter,
     private val categories: ArrayList<Category>,
 ) {
 
@@ -216,11 +224,19 @@ class PopupManager(
             val accountPosition = accountAdapter.accounts.indexOfFirst { it.id == account.id }
             accountAdapter.notifyItemChanged(accountPosition)
 
+            var budget = category.getBudgetForMonth(filter.selectedMonthNum, filter.selectedYear)
+            if (budget != null) {
+                budget.spent += transaction.amount
+                budget.remaining -= transaction.amount
+                budgetAdapter.notifyDataSetChanged()
+            }
+
             homeFragment.updateBalance()
             categoryFragment.updateBalance()
             recordsFragment.updateBalance()
             analysisFragment.updateBalance()
             analysisFragment.updateFilterPieChart()
+            budgetFragment.updateBudget()
 
             // Notify the user and close the popup
             Toast.makeText(activity, "Transaction saved!", Toast.LENGTH_SHORT).show()
