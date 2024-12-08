@@ -3,9 +3,7 @@ package com.mobdeve.s12.group4.mco.utility
 import android.app.DatePickerDialog
 import android.graphics.Typeface
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.Spinner
@@ -27,7 +25,6 @@ import com.mobdeve.s12.group4.mco.fragments.CategoryFragment
 import com.mobdeve.s12.group4.mco.fragments.HomeFragment
 import com.mobdeve.s12.group4.mco.fragments.RecordsFragment
 import com.mobdeve.s12.group4.mco.models.Account
-import com.mobdeve.s12.group4.mco.models.Budget
 import com.mobdeve.s12.group4.mco.models.Category
 import com.mobdeve.s12.group4.mco.models.CategoryParent
 import com.mobdeve.s12.group4.mco.models.CustomDate
@@ -35,23 +32,8 @@ import com.mobdeve.s12.group4.mco.models.TransacParent
 import com.mobdeve.s12.group4.mco.models.Transaction
 import java.util.Calendar
 
-class PopupManager(
-    private val activity: AppCompatActivity,
-    private val homeFragment: HomeFragment,
-    private val recordsFragment: RecordsFragment,
-    private val categoryFragment: CategoryFragment,
-    private val analysisFragment: AnalysisFragment,
-    private val budgetFragment: BudgetFragment,
-    private val accountAdapter: AccountAdapter,
-    private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
-    private val budgetAdapter: ParentAdapter<CategoryParent, Category>,
-    private val accountSpinnerAdapter: SpinnerAdapter<Account>,
-    private val iconAdapter: IconAdapter,
-    private val filter: Filter,
-    private val categories: ArrayList<Category>,
-) {
-
-    fun showAddAcc() {
+class PopupManager() {
+    fun showAddAcc(activity: AppCompatActivity, accountAdapter: AccountAdapter, iconAdapter: IconAdapter) {
         val popupView = activity.layoutInflater.inflate(R.layout.popup_new_account, null)
         val accNameEditText = popupView.findViewById<EditText>(R.id.acc_name)
         val initialAmtEditText = popupView.findViewById<EditText>(R.id.acc_amt)
@@ -87,7 +69,7 @@ class PopupManager(
                                         accName,
                                         initialAmt.toDouble(),
                                         mutableListOf())
-                accountAdapter.addAccount(newAccount)
+                accountAdapter.addToAccounts(newAccount)
             }
 
             popupWindow.dismiss()
@@ -98,7 +80,87 @@ class PopupManager(
         iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    fun showAddTransaction() {
+    fun showAccountPopup(activity: AppCompatActivity, accountAdapter: AccountAdapter, iconAdapter: IconAdapter, account: Account?, position: Int) {
+        val popupView = activity.layoutInflater.inflate(R.layout.popup_new_account, null)
+        val accNameEditText = popupView.findViewById<EditText>(R.id.acc_name)
+        val initialAmtEditText = popupView.findViewById<EditText>(R.id.acc_amt)
+        val saveBtn = popupView.findViewById<MaterialButton>(R.id.trans_saveBtn)
+        val cancelBtn = popupView.findViewById<MaterialButton>(R.id.trans_cancelBtn)
+        val iconsRV = popupView.findViewById<RecyclerView>(R.id.acc_popup_rv)
+
+        // Create the PopupWindow
+        val popupWindow = PopupWindow(
+            popupView,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+
+        popupWindow.isFocusable = true
+        popupWindow.update()
+        popupWindow.showAtLocation(activity.findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
+
+        // Pre-fill the fields if editing an existing account
+        if (account != null) {
+            accNameEditText.setText(account.name)
+            initialAmtEditText.setText(account.balance.toString())
+            iconAdapter.selectIcon(account.imageId)
+        }
+
+        cancelBtn.setOnClickListener {
+            popupWindow.dismiss()
+            iconAdapter.clearSelection()
+        }
+
+        saveBtn.setOnClickListener {
+            val accName = accNameEditText.text.toString().trim()
+            val initialAmt = initialAmtEditText.text.toString().trim()
+            val selectedIcon = iconAdapter.getSelectedIcon()
+
+            if (accName.isEmpty() || initialAmt.isEmpty() || selectedIcon == null) {
+                Toast.makeText(activity, "Please fill all fields and select an icon.", Toast.LENGTH_SHORT).show()
+            } else {
+                if (account == null) {
+                    // Adding a new account
+                    val newAccount = Account(
+                        accountAdapter.accounts.size + 1L,
+                        selectedIcon.imageID,
+                        accName,
+                        initialAmt.toDouble(),
+                        mutableListOf()
+                    )
+                    accountAdapter.addToAccounts(newAccount)
+                } else {
+                    // Editing an existing account
+                    account.name = accName
+                    account.balance = initialAmt.toDouble()
+                    account.imageId = selectedIcon.imageID
+                    accountAdapter.notifyItemChanged(position)
+                }
+            }
+
+            popupWindow.dismiss()
+            iconAdapter.clearSelection()
+        }
+
+        iconsRV.adapter = iconAdapter
+        iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+
+    fun showAddTransaction(
+        activity: AppCompatActivity,
+        homeFragment: HomeFragment,
+        recordsFragment: RecordsFragment,
+        categoryFragment: CategoryFragment,
+        analysisFragment: AnalysisFragment,
+        budgetFragment: BudgetFragment,
+        accountAdapter: AccountAdapter,
+        recordsAdapter: ParentAdapter<TransacParent, Transaction>,
+        budgetAdapter: ParentAdapter<CategoryParent, Category>,
+        accountSpinnerAdapter: SpinnerAdapter<Account>,
+        filter: Filter,
+        categories: ArrayList<Category>
+    ) {
         val regular = Typeface.DEFAULT
         val bold = ResourcesCompat.getFont(activity, R.font.poppins_bold)
         val popupView = activity.layoutInflater.inflate(R.layout.popup_transaction, null)
@@ -216,9 +278,9 @@ class PopupManager(
             category.addTransaction(transaction)
 
             if (transaction.type == "Expense") {
-                account.setBalance(transaction.account.balance - transaction.amount)
+                account.balance = transaction.account.balance - transaction.amount
             } else {
-                account.setBalance(transaction.account.balance + transaction.amount)
+                account.balance = transaction.account.balance + transaction.amount
             }
 
             val accountPosition = accountAdapter.accounts.indexOfFirst { it.id == account.id }
