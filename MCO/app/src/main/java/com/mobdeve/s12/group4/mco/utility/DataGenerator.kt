@@ -3,6 +3,7 @@ package com.mobdeve.s12.group4.mco.utility
 import android.util.Log
 import com.mobdeve.s12.group4.mco.R
 import com.mobdeve.s12.group4.mco.models.Account
+import com.mobdeve.s12.group4.mco.models.Budget
 import com.mobdeve.s12.group4.mco.models.Category
 import com.mobdeve.s12.group4.mco.models.CategoryParent
 import com.mobdeve.s12.group4.mco.models.CustomDate
@@ -13,11 +14,11 @@ import com.mobdeve.s12.group4.mco.models.Transaction
 class DataGenerator {
     companion object {
         // Define Categories
-        private val salary = Category(0, R.drawable.wallet, "Salary", "Income", mutableListOf(), null)
-        private val grants = Category(1, R.drawable.giftbox, "Grants", "Income", mutableListOf(), null)
-        private val education = Category(2, R.drawable.education, "Education", "Expense", mutableListOf(), null)
-        private val health = Category(3, R.drawable.health, "Health", "Expense", mutableListOf(), null)
-        private val food = Category(4, R.drawable.food, "Food", "Expense", mutableListOf(), null)
+        private val salary = Category(0, R.drawable.wallet, "Salary", "Income")
+        private val grants = Category(1, R.drawable.giftbox, "Grants", "Income")
+        private val health = Category(3, R.drawable.health, "Health", "Expense")
+        private val education = Category(2, R.drawable.education, "Education", "Expense")
+        private val food = Category(4, R.drawable.food, "Food", "Expense")
 
         // Define Accounts
         private val accountChecking = Account(0, R.drawable.card, "Checking Account", 1000.0, mutableListOf())
@@ -47,6 +48,10 @@ class DataGenerator {
             salary.addTransaction(transaction3)
             health.addTransaction(transaction4)
             food.addTransaction(transaction5)
+
+            // Add budgets to categories
+            food.addBudget(Budget(limit = 500.0, spent = 200.0, remaining = 300.0, month = 10, year = 2024))
+            education.addBudget(Budget(limit = 600.0, spent = 250.0, remaining = 350.0, month = 10, year = 2024))
 
             // Add transactions to accounts
             accountCash.addTransaction(transaction1)
@@ -89,6 +94,34 @@ class DataGenerator {
 
             // Return the result as an ArrayList
             return ArrayList(categoryParents)
+        }
+
+        fun generateBudgetParent(month: Int, year: Int): ArrayList<CategoryParent> {
+            // Sample categories
+            val categories = listOf(salary, grants, education, health, food)
+
+            // Split categories into budgeted and not budgeted for the given month
+            val budgeted = mutableListOf<Category>()
+            val notBudgeted = mutableListOf<Category>()
+
+            categories.forEach { category ->
+                val budgetForMonth = category.budgets.find { budget ->
+                    budget.month == month && budget.year == year
+                }
+                if (budgetForMonth != null) {
+                    budgeted.add(category)
+                } else {
+                    notBudgeted.add(category)
+                }
+            }
+
+            // Create the category parent list
+            val categoryParent = arrayListOf(
+                CategoryParent(section = "Budgeted categories", list = budgeted),
+                CategoryParent(section = "Not Budgeted categories", list = notBudgeted)
+            )
+
+            return categoryParent
         }
 
         fun generateTransacParent(): ArrayList<TransacParent> {

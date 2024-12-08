@@ -1,20 +1,34 @@
 package com.mobdeve.s12.group4.mco.utility
 
+import android.util.Log
 import com.mobdeve.s12.group4.mco.adapters.AnalysisAdapter
 import com.mobdeve.s12.group4.mco.adapters.ParentAdapter
 import com.mobdeve.s12.group4.mco.models.Category
+import com.mobdeve.s12.group4.mco.models.CategoryParent
 import com.mobdeve.s12.group4.mco.models.TransacParent
 import com.mobdeve.s12.group4.mco.models.Transaction
+import java.util.Calendar
 
 class Filter {
-        var selectedMonth: String = "Jan"
-        var selectedYear: Int = 0
+        private val monthMap = mapOf(
+            "Jan" to 0, "Feb" to 1, "Mar" to 2, "Apr" to 3,
+            "May" to 4, "Jun" to 5, "Jul" to 6, "Aug" to 7,
+            "Sep" to 8, "Oct" to 9, "Nov" to 10, "Dec" to 11
+        )
+        private val reverseMonthMap = monthMap.entries.associate { it.value to it.key }
+
+        val calendar = Calendar.getInstance()
+        var selectedMonth: String = reverseMonthMap[calendar.get(Calendar.MONTH)].toString()
+        var selectedMonthNum: Int = calendar.get(Calendar.MONTH)
+        var selectedYear: Int = calendar.get(Calendar.YEAR)
 
         fun setSelectedDate(month: String, year: Int) {
             selectedMonth = month
+            selectedMonthNum = monthMap[month] ?: 0
             selectedYear = year
         }
 
+        // filter for transacparents in parentadapter
         fun applyFilter(
             month: String,
             year: Int,
@@ -39,6 +53,7 @@ class Filter {
             adapter.updateFilteredList(ArrayList(filteredTransacParents))
         }
 
+        // filter for categories in analysis adapter
         fun applyFilter(
             month: Int,
             year: Int,
@@ -73,4 +88,34 @@ class Filter {
             adapter.filteredDateTransactions = filteredDateTransactions
             adapter.filteredTransactions = allFilteredTransactions
         }
+
+    fun filterCategoryBudget(month: Int, year: Int, adapter: ParentAdapter<CategoryParent, Category>) {
+        // Generate the new data based on the selected month and year
+        val categories = adapter.list.flatMap { it.list }
+
+        val budgeted = mutableListOf<Category>()
+        val notBudgeted = mutableListOf<Category>()
+
+        categories.forEach { category ->
+            val budgetForMonth = category.budgets.find { budget ->
+                budget.month == month && budget.year == year
+            }
+            if (budgetForMonth != null) {
+                budgeted.add(category)
+            } else {
+                notBudgeted.add(category)
+            }
+        }
+
+        // Create the category parent list
+        val categoryParent = arrayListOf(
+            CategoryParent(section = "Budgeted categories", list = budgeted),
+            CategoryParent(section = "Not Budgeted categories", list = notBudgeted)
+        )
+
+        adapter .apply {
+            list = categoryParent // Update the adapter's list with the new data
+            notifyDataSetChanged() // Notify the adapter that the data has changed
+        }
+    }
 }
