@@ -1,5 +1,8 @@
 package com.mobdeve.s12.group4.mco.adapters
 
+import android.app.Activity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,7 @@ import com.mobdeve.s12.group4.mco.models.Budget
 import com.mobdeve.s12.group4.mco.models.Category
 import com.mobdeve.s12.group4.mco.models.CategoryParent
 import com.mobdeve.s12.group4.mco.utility.Filter
+import com.mobdeve.s12.group4.mco.utility.PopupManager
 import java.text.DecimalFormat
 
 class BudgetChildAdapter(
@@ -28,6 +32,7 @@ class BudgetChildAdapter(
 
     private lateinit var budgetFragment: BudgetFragment
     private var filteredCategories = list.filter { it.type == "Expense" }
+    private val popupManager = PopupManager()
 
     inner class BudgetedHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val catBudgetedImg: ImageView = itemView.findViewById(R.id.catBudgetedImg)
@@ -186,8 +191,17 @@ class BudgetChildAdapter(
         popupWindow.update()
         popupWindow.showAtLocation(holder.itemView.rootView, Gravity.CENTER, 0, 0)
 
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Apply dim effect to the background
+        val window = (holder.itemView.context as Activity).window
+        val layoutParams = window.attributes
+        layoutParams.alpha = 0.7f // Adjust the dim level (1.0 is fully bright, 0.0 is completely dimmed)
+        window.attributes = layoutParams
+
+        popupManager.popupShow(popupView)
+        
         cancelBtn.setOnClickListener {
-            popupWindow.dismiss()
+            popupManager.popupDismiss(popupView, popupWindow, window, layoutParams)
         }
 
         saveBtn.setOnClickListener {
@@ -205,9 +219,8 @@ class BudgetChildAdapter(
                 }
                 filter.filterCategoryBudget(filter.selectedMonthNum, filter.selectedYear, parentAdapter)
                 budgetFragment.updateBudget()
-                popupWindow.dismiss()
+                popupManager.popupDismiss(popupView, popupWindow, window, layoutParams)
             }
         }
-
     }
 }
