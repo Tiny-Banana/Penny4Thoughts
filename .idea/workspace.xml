@@ -25,7 +25,27 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/custom_marker_view.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/drawer_header.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/dropdown_spinner_text.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/fragment_analysis.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/fragment_budget.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
@@ -50,7 +70,22 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_budgeted.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_category_analyis.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_icon.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_not_budgeted.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
@@ -60,7 +95,27 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_new_account.xml">
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/item_spinner_text.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_account.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_budget.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_category.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_record.xml">
         <config>
           <theme>@style/Theme.MCO</theme>
         </config>
@@ -100,18 +155,38 @@
           <theme>@style/Theme.MCO</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/MCO/app/src/main/res/menu/popup_more.xml">
+        <config>
+          <theme>@style/Theme.MCO</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="923965c8-0139-4d2d-9043-9f0b855d97e4" name="Changes" comment="fix: add date for addtransac popup">
+    <list default="true" id="923965c8-0139-4d2d-9043-9f0b855d97e4" name="Changes" comment="feat: change popup animation">
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/analysis_fragment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/AccountAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/AccountAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/AnalysisAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/AnalysisAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/CategoryChildAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/CategoryChildAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/ParentAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/ParentAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/SpinnerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/SpinnerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/TransacChildAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/adapters/TransacChildAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/models/Category.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/DataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/DataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/Filter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/PopupManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/java/com/mobdeve/s12/group4/mco/utility/PopupManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/btn_add_newacc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/btn_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/item_category_analyis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/item_category_analyis.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/item_not_budgeted.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/item_not_budgeted.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_budget.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_budget.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_new_account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/popup_account.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MCO/app/src/main/res/layout/recyclerview_category_child.xml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO/app/src/main/res/layout/recyclerview_category_child.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,9 +245,9 @@
       <list>
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -216,9 +291,13 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Jomar/Desktop",
+    "last_opened_file_path": "C:/Users/Jomar/Desktop/Penny4Thoughts",
+    "project.structure.last.edited": "Dependencies",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   },
   "keyToStringList": {
@@ -323,326 +402,6 @@
       <option name="presentableId" value="Default" />
       <updated>1729297382666</updated>
     </task>
-    <task id="LOCAL-00001" summary="initialize new project">
-      <option name="closed" value="true" />
-      <created>1729297667982</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1729297667982</updated>
-    </task>
-    <task id="LOCAL-00002" summary="chore: set colors and themes">
-      <option name="closed" value="true" />
-      <created>1729305429414</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1729305429414</updated>
-    </task>
-    <task id="LOCAL-00003" summary="chore: add navbar icons">
-      <option name="closed" value="true" />
-      <created>1729305492325</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1729305492325</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat: add navbar">
-      <option name="closed" value="true" />
-      <created>1729305502773</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1729305502773</updated>
-    </task>
-    <task id="LOCAL-00005" summary="chore: add fonts">
-      <option name="closed" value="true" />
-      <created>1729334917548</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1729334917548</updated>
-    </task>
-    <task id="LOCAL-00006" summary="chore: add icons for navdrawer">
-      <option name="closed" value="true" />
-      <created>1729334961613</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1729334961617</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat: initialize fragments">
-      <option name="closed" value="true" />
-      <created>1729334989145</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1729334989145</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat: initialize fragments">
-      <option name="closed" value="true" />
-      <created>1729335010510</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1729335010510</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat: initialize fragments">
-      <option name="closed" value="true" />
-      <created>1729335028024</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1729335028024</updated>
-    </task>
-    <task id="LOCAL-00010" summary="feat: add navdrawer">
-      <option name="closed" value="true" />
-      <created>1729335043479</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1729335043479</updated>
-    </task>
-    <task id="LOCAL-00011" summary="chore: put activities to a folder">
-      <option name="closed" value="true" />
-      <created>1732031141952</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031141952</updated>
-    </task>
-    <task id="LOCAL-00012" summary="chore: put models to a folder">
-      <option name="closed" value="true" />
-      <created>1732031208905</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031208905</updated>
-    </task>
-    <task id="LOCAL-00013" summary="chore: put fragments to a folder">
-      <option name="closed" value="true" />
-      <created>1732031222270</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031222270</updated>
-    </task>
-    <task id="LOCAL-00014" summary="feat: add accounts locally">
-      <option name="closed" value="true" />
-      <created>1732031381297</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031381297</updated>
-    </task>
-    <task id="LOCAL-00015" summary="build: change gradle build version">
-      <option name="closed" value="true" />
-      <created>1732031405642</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031405642</updated>
-    </task>
-    <task id="LOCAL-00016" summary="build: update ide generated files">
-      <option name="closed" value="true" />
-      <created>1732031461483</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031461483</updated>
-    </task>
-    <task id="LOCAL-00017" summary="feat: add border rectangle">
-      <option name="closed" value="true" />
-      <created>1732031475425</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1732031475425</updated>
-    </task>
-    <task id="LOCAL-00018" summary="chore: resize account imgs">
-      <option name="closed" value="true" />
-      <created>1732212145707</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212145707</updated>
-    </task>
-    <task id="LOCAL-00019" summary="chore: add category imgs">
-      <option name="closed" value="true" />
-      <created>1732212164071</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212164071</updated>
-    </task>
-    <task id="LOCAL-00020" summary="chore: add spinner img">
-      <option name="closed" value="true" />
-      <created>1732212181854</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212181854</updated>
-    </task>
-    <task id="LOCAL-00021" summary="fix: img sizing">
-      <option name="closed" value="true" />
-      <created>1732212228684</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212228684</updated>
-    </task>
-    <task id="LOCAL-00022" summary="style: change spacing">
-      <option name="closed" value="true" />
-      <created>1732212275639</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212275639</updated>
-    </task>
-    <task id="LOCAL-00023" summary="feat: add spinner adapter">
-      <option name="closed" value="true" />
-      <created>1732212321936</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212321936</updated>
-    </task>
-    <task id="LOCAL-00024" summary="feat: add spinner layout">
-      <option name="closed" value="true" />
-      <created>1732212361646</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212361646</updated>
-    </task>
-    <task id="LOCAL-00025" summary="feat: add popup transaction">
-      <option name="closed" value="true" />
-      <created>1732212377350</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212377350</updated>
-    </task>
-    <task id="LOCAL-00026" summary="build: update workspace">
-      <option name="closed" value="true" />
-      <created>1732212404610</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212404610</updated>
-    </task>
-    <task id="LOCAL-00027" summary="fix: accept decimal in popup new acc">
-      <option name="closed" value="true" />
-      <created>1732212493234</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1732212493234</updated>
-    </task>
-    <task id="LOCAL-00028" summary="feat: add parent recycler view">
-      <option name="closed" value="true" />
-      <created>1732375339114</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375339114</updated>
-    </task>
-    <task id="LOCAL-00029" summary="feat: add category and and transac recycler view layouts">
-      <option name="closed" value="true" />
-      <created>1732375362757</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375362757</updated>
-    </task>
-    <task id="LOCAL-00030" summary="feat: add parent recycler adapter">
-      <option name="closed" value="true" />
-      <created>1732375529423</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375529423</updated>
-    </task>
-    <task id="LOCAL-00031" summary="feat: add child recycler adapters">
-      <option name="closed" value="true" />
-      <created>1732375565935</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375565935</updated>
-    </task>
-    <task id="LOCAL-00032" summary="feat: add parent data class">
-      <option name="closed" value="true" />
-      <created>1732375586725</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375586725</updated>
-    </task>
-    <task id="LOCAL-00033" summary="feat: add record fragment layout">
-      <option name="closed" value="true" />
-      <created>1732375619611</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375619611</updated>
-    </task>
-    <task id="LOCAL-00034" summary="feat: add category fragment layout">
-      <option name="closed" value="true" />
-      <created>1732375629181</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375629181</updated>
-    </task>
-    <task id="LOCAL-00035" summary="fix: add id for base models">
-      <option name="closed" value="true" />
-      <created>1732375660697</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375660697</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fix: add record fragment">
-      <option name="closed" value="true" />
-      <created>1732375728814</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375728814</updated>
-    </task>
-    <task id="LOCAL-00037" summary="fix: add category fragment">
-      <option name="closed" value="true" />
-      <created>1732375739337</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375739337</updated>
-    </task>
-    <task id="LOCAL-00038" summary="feat: add recycler view child item layouts">
-      <option name="closed" value="true" />
-      <created>1732375854958</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375854958</updated>
-    </task>
-    <task id="LOCAL-00039" summary="chore: rename home_fragment">
-      <option name="closed" value="true" />
-      <created>1732375889757</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375889757</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fix: reflect ids to the base models">
-      <option name="closed" value="true" />
-      <created>1732375907018</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1732375907018</updated>
-    </task>
     <task id="LOCAL-00041" summary="feat: complete add transaction popup">
       <option name="closed" value="true" />
       <created>1732376036716</created>
@@ -699,7 +458,343 @@
       <option name="project" value="LOCAL" />
       <updated>1732376206607</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="chore: update themes">
+      <option name="closed" value="true" />
+      <created>1732376227101</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376227101</updated>
+    </task>
+    <task id="LOCAL-00049" summary="feat: add filter">
+      <option name="closed" value="true" />
+      <created>1732376241405</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376241405</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix: add filter to records fragment and records adapter">
+      <option name="closed" value="true" />
+      <created>1732376319742</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376319742</updated>
+    </task>
+    <task id="LOCAL-00051" summary="build: update workspace">
+      <option name="closed" value="true" />
+      <created>1732376331159</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376331159</updated>
+    </task>
+    <task id="LOCAL-00052" summary="build: update assetWizard">
+      <option name="closed" value="true" />
+      <created>1732376533322</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376533322</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix: change float to double and int to long in base classes">
+      <option name="closed" value="true" />
+      <created>1732391998309</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1732391998309</updated>
+    </task>
+    <task id="LOCAL-00054" summary="feat: update income, balance, and expense when transaction is added">
+      <option name="closed" value="true" />
+      <created>1732540126325</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1732540126325</updated>
+    </task>
+    <task id="LOCAL-00055" summary="chore: update ids in fragments">
+      <option name="closed" value="true" />
+      <created>1732540159200</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1732540159200</updated>
+    </task>
+    <task id="LOCAL-00056" summary="refactor: modularize filter">
+      <option name="closed" value="true" />
+      <created>1732540196774</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1732540196774</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix: adjust spacing and font size">
+      <option name="closed" value="true" />
+      <created>1732541340066</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1732541340066</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fix: use formatter for balance in AccountAdapter">
+      <option name="closed" value="true" />
+      <created>1732541545499</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1732541545499</updated>
+    </task>
+    <task id="LOCAL-00059" summary="refactor: remove unused package">
+      <option name="closed" value="true" />
+      <created>1732541579346</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1732541579346</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix: update spacing">
+      <option name="closed" value="true" />
+      <created>1732541772165</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1732541772165</updated>
+    </task>
+    <task id="LOCAL-00061" summary="build: add mpchart">
+      <option name="closed" value="true" />
+      <created>1732654712507</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654712508</updated>
+    </task>
+    <task id="LOCAL-00062" summary="build: add mpchart">
+      <option name="closed" value="true" />
+      <created>1732654722722</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654722722</updated>
+    </task>
+    <task id="LOCAL-00063" summary="feat: add dynamic text view when there is no record">
+      <option name="closed" value="true" />
+      <created>1732654851270</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654851270</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix: update font changes in spinner">
+      <option name="closed" value="true" />
+      <created>1732654876192</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654876192</updated>
+    </task>
+    <task id="LOCAL-00065" summary="build: add mpchart">
+      <option name="closed" value="true" />
+      <created>1732654895795</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654895795</updated>
+    </task>
+    <task id="LOCAL-00066" summary="chore: add transactions in datagenerator">
+      <option name="closed" value="true" />
+      <created>1732654923917</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654923917</updated>
+    </task>
+    <task id="LOCAL-00067" summary="feat: add balance calculator">
+      <option name="closed" value="true" />
+      <created>1732654965294</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1732654965294</updated>
+    </task>
+    <task id="LOCAL-00068" summary="feat: add custom marker view">
+      <option name="closed" value="true" />
+      <created>1732655030570</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655030570</updated>
+    </task>
+    <task id="LOCAL-00069" summary="feat: add text spinner layouts">
+      <option name="closed" value="true" />
+      <created>1732655062836</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655062836</updated>
+    </task>
+    <task id="LOCAL-00070" summary="feat: add drawable shapes">
+      <option name="closed" value="true" />
+      <created>1732655103369</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655103369</updated>
+    </task>
+    <task id="LOCAL-00071" summary="feat: add analysis layouts">
+      <option name="closed" value="true" />
+      <created>1732655131064</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655131064</updated>
+    </task>
+    <task id="LOCAL-00072" summary="feat: add analysis logic">
+      <option name="closed" value="true" />
+      <created>1732655153181</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655153181</updated>
+    </task>
+    <task id="LOCAL-00073" summary="refactor: modularize RecordsFragment">
+      <option name="closed" value="true" />
+      <created>1732655247023</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655247024</updated>
+    </task>
+    <task id="LOCAL-00074" summary="feat: add budget for category">
+      <option name="closed" value="true" />
+      <created>1732655939488</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1732655939488</updated>
+    </task>
+    <task id="LOCAL-00075" summary="feat: add budget layouts">
+      <option name="closed" value="true" />
+      <created>1733659090328</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659090329</updated>
+    </task>
+    <task id="LOCAL-00076" summary="feat: add budget adapter">
+      <option name="closed" value="true" />
+      <created>1733659123915</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659123915</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix: update fragment layouts">
+      <option name="closed" value="true" />
+      <created>1733659150001</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659150001</updated>
+    </task>
+    <task id="LOCAL-00078" summary="feat: add budget to utility classes">
+      <option name="closed" value="true" />
+      <created>1733659204149</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659204149</updated>
+    </task>
+    <task id="LOCAL-00079" summary="fix: error when setting up piechart">
+      <option name="closed" value="true" />
+      <created>1733659227412</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659227412</updated>
+    </task>
+    <task id="LOCAL-00080" summary="fix: budget implementation in category class">
+      <option name="closed" value="true" />
+      <created>1733659258201</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1733659258201</updated>
+    </task>
+    <task id="LOCAL-00081" summary="feat: add edit and delete budget">
+      <option name="closed" value="true" />
+      <created>1733665362962</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1733665362962</updated>
+    </task>
+    <task id="LOCAL-00082" summary="refactor: modularize popupmanager">
+      <option name="closed" value="true" />
+      <created>1733671853439</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1733671853439</updated>
+    </task>
+    <task id="LOCAL-00083" summary="feat: add edit and delete for accounts">
+      <option name="closed" value="true" />
+      <created>1733671882077</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1733671882077</updated>
+    </task>
+    <task id="LOCAL-00084" summary="refactor: variables">
+      <option name="closed" value="true" />
+      <created>1733671988662</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1733671988662</updated>
+    </task>
+    <task id="LOCAL-00085" summary="feat: add drawables and update popups">
+      <option name="closed" value="true" />
+      <created>1733691437906</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1733691437906</updated>
+    </task>
+    <task id="LOCAL-00086" summary="feat: update models">
+      <option name="closed" value="true" />
+      <created>1733691509454</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1733691509454</updated>
+    </task>
+    <task id="LOCAL-00087" summary="refactor: transacparent model">
+      <option name="closed" value="true" />
+      <created>1733691575895</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1733691575896</updated>
+    </task>
+    <task id="LOCAL-00088" summary="feat: add edit and delete transaction">
+      <option name="closed" value="true" />
+      <created>1733691633596</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1733691633596</updated>
+    </task>
+    <task id="LOCAL-00089" summary="feat: change popup animation">
+      <option name="closed" value="true" />
+      <created>1733691724006</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1733691724006</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -714,31 +809,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add spinner adapter" />
-    <MESSAGE value="feat: add spinner layout" />
-    <MESSAGE value="feat: add popup transaction" />
-    <MESSAGE value="build: update workspace" />
-    <MESSAGE value="fix: accept decimal in popup new acc" />
-    <MESSAGE value="feat: add parent recycler view" />
-    <MESSAGE value="feat: add category and and transac recycler view layouts" />
-    <MESSAGE value="feat: add parent recycler adapter" />
-    <MESSAGE value="feat: add child recycler adapters" />
-    <MESSAGE value="feat: add parent data class" />
-    <MESSAGE value="feat: add record fragment layout" />
-    <MESSAGE value="feat: add category fragment layout" />
-    <MESSAGE value="fix: add id for base models" />
-    <MESSAGE value="fix: add record fragment" />
-    <MESSAGE value="fix: add category fragment" />
-    <MESSAGE value="feat: add recycler view child item layouts" />
-    <MESSAGE value="chore: rename home_fragment" />
-    <MESSAGE value="fix: reflect ids to the base models" />
-    <MESSAGE value="feat: complete add transaction popup" />
-    <MESSAGE value="chore: move datagenerator to utility" />
-    <MESSAGE value="chore: reflect the renamed home fragment" />
-    <MESSAGE value="chore: add transparent gray color" />
-    <MESSAGE value="fix: make variables public" />
-    <MESSAGE value="chore: rename records_fragment" />
-    <MESSAGE value="fix: add date for addtransac popup" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: add date for addtransac popup" />
+    <MESSAGE value="build: add mpchart" />
+    <MESSAGE value="chore: add transactions in datagenerator" />
+    <MESSAGE value="feat: add balance calculator" />
+    <MESSAGE value="feat: add custom marker view" />
+    <MESSAGE value="feat: add text spinner layouts" />
+    <MESSAGE value="feat: add drawable shapes" />
+    <MESSAGE value="feat: add analysis layouts" />
+    <MESSAGE value="feat: add analysis logic" />
+    <MESSAGE value="refactor: modularize RecordsFragment" />
+    <MESSAGE value="feat: add budget for category" />
+    <MESSAGE value="feat: add budget layouts" />
+    <MESSAGE value="feat: add budget adapter" />
+    <MESSAGE value="fix: update fragment layouts" />
+    <MESSAGE value="feat: add budget to utility classes" />
+    <MESSAGE value="fix: error when setting up piechart" />
+    <MESSAGE value="fix: budget implementation in category class" />
+    <MESSAGE value="feat: add edit and delete budget" />
+    <MESSAGE value="refactor: modularize popupmanager" />
+    <MESSAGE value="feat: add edit and delete for accounts" />
+    <MESSAGE value="refactor: variables" />
+    <MESSAGE value="feat: add drawables and update popups" />
+    <MESSAGE value="feat: update models" />
+    <MESSAGE value="refactor: transacparent model" />
+    <MESSAGE value="feat: add edit and delete transaction" />
+    <MESSAGE value="feat: change popup animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: change popup animation" />
   </component>
 </project>
