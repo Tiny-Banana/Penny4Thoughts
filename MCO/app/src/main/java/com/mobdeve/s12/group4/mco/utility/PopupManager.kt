@@ -39,12 +39,12 @@ import java.util.Calendar
 
 class PopupManager() {
     fun showAccountPopup(activity: AppCompatActivity, accountAdapter: AccountAdapter, iconAdapter: IconAdapter, account: Account?, position: Int) {
-        val popupView = activity.layoutInflater.inflate(R.layout.popup_new_account, null)
+        val popupView = activity.layoutInflater.inflate(R.layout.popup_account, null)
         val accAction = popupView.findViewById<TextView>(R.id.accountTitleAction)
         val accNameEditText = popupView.findViewById<EditText>(R.id.acc_name)
         val initialAmtEditText = popupView.findViewById<EditText>(R.id.acc_amt)
-        val saveBtn = popupView.findViewById<MaterialButton>(R.id.trans_saveBtn)
-        val cancelBtn = popupView.findViewById<MaterialButton>(R.id.trans_cancelBtn)
+        val saveBtn = popupView.findViewById<MaterialButton>(R.id.acc_saveBtn)
+        val cancelBtn = popupView.findViewById<MaterialButton>(R.id.acc_cancelBtn)
         val iconsRV = popupView.findViewById<RecyclerView>(R.id.acc_popup_rv)
 
         // Create the PopupWindow
@@ -115,6 +115,114 @@ class PopupManager() {
         iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
+    fun showCategoryPopup(activity: AppCompatActivity, parentAdapter: ParentAdapter<CategoryParent, Category>, iconAdapter: IconAdapter, category: Category?, filter: Filter) {
+        val popupView = activity.layoutInflater.inflate(R.layout.popup_category, null)
+        val catAction = popupView.findViewById<TextView>(R.id.catAction)
+        val catIncome = popupView.findViewById<TextView>(R.id.catIncome)
+        val catExpense = popupView.findViewById<TextView>(R.id.catExpense)
+        val catNameEditText = popupView.findViewById<EditText>(R.id.catName)
+        val saveBtn = popupView.findViewById<MaterialButton>(R.id.cat_saveBtn)
+        val cancelBtn = popupView.findViewById<MaterialButton>(R.id.cat_cancelBtn)
+        val iconsRV = popupView.findViewById<RecyclerView>(R.id.cat_popup_rv)
+        val regular = Typeface.DEFAULT
+        val bold = ResourcesCompat.getFont(activity, R.font.poppins_bold)
+        var typeSelected = "Income" // initial type
+
+        // Create the PopupWindow
+        val popupWindow = PopupWindow(
+            popupView,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+
+        popupWindow.isFocusable = true
+        popupWindow.update()
+        popupWindow.showAtLocation(activity.findViewById(R.id.flFragment), Gravity.CENTER, 0, 0)
+
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Apply dim effect to the background
+        val window = activity.window
+        val layoutParams = window.attributes
+        layoutParams.alpha = 0.7f // Adjust the dim level (1.0 is fully bright, 0.0 is completely dimmed)
+        window.attributes = layoutParams
+
+        popupShow(popupView)
+
+        // Select Income as initial type
+        catIncome.typeface = bold
+        catExpense.typeface = regular
+
+        catIncome.setOnClickListener {
+            catIncome.typeface = bold
+            catExpense.typeface = regular
+            typeSelected = "Income"
+        }
+
+        catExpense.setOnClickListener {
+            catExpense.typeface = bold
+            catIncome.typeface = regular
+            typeSelected = "Expense"
+        }
+
+
+        if (category != null) {
+            catAction.text = "Edit category"
+            catNameEditText.setText(category.name)
+            iconAdapter.selectIcon(category.imageId)
+
+            if (category.type == "Expense") {
+                catExpense.typeface = bold
+                catIncome.typeface = regular
+                typeSelected = "Expense"
+            } else {
+                catIncome.typeface = bold
+                catExpense.typeface = regular
+                typeSelected = "Income"
+            }
+        }
+
+        cancelBtn.setOnClickListener {
+            popupDismiss(popupView, popupWindow, window, layoutParams)
+            iconAdapter.clearSelection()
+        }
+
+        saveBtn.setOnClickListener {
+            val catName = catNameEditText.text.toString().trim()
+            val selectedIcon = iconAdapter.getSelectedIcon()
+
+            if (catName.isEmpty() || selectedIcon == null) {
+                Toast.makeText(activity, "Please fill all fields and select an icon.", Toast.LENGTH_SHORT).show()
+            } else {
+                if (category == null) {
+                    // Adding a new account
+                    val newCategory = Category(
+                        parentAdapter.originalList.size + 1L,
+                        selectedIcon.imageID,
+                        catName,
+                        typeSelected,
+                        mutableListOf(),
+                        mutableListOf()
+                    )
+                    parentAdapter.addItem(newCategory)
+                    filter.filterCategoryName(parentAdapter)
+                } else {
+                    // Editing an existing account
+                    category.name = catName
+                    category.imageId = selectedIcon.imageID
+                    category.type = typeSelected
+                    parentAdapter.editItem(category)
+                    filter.filterCategoryName(parentAdapter)
+                }
+
+                popupDismiss(popupView, popupWindow, window, layoutParams)
+                iconAdapter.clearSelection()
+            }
+        }
+
+        iconsRV.adapter = iconAdapter
+        iconsRV.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+    }
+
     fun showTransactionPopup(
         activity: AppCompatActivity,
         homeFragment: HomeFragment,
@@ -126,8 +234,8 @@ class PopupManager() {
         recordsAdapter: ParentAdapter<TransacParent, Transaction>,
         budgetAdapter: ParentAdapter<CategoryParent, Category>,
         accountSpinnerAdapter: SpinnerAdapter<Account>,
+        categorySpinnerAdapter: SpinnerAdapter<Category>,
         filter: Filter,
-        categories: ArrayList<Category>,
         transaction: Transaction?
     ) {
         val regular = Typeface.DEFAULT
@@ -167,22 +275,10 @@ class PopupManager() {
         accSpinner.adapter = accountSpinnerAdapter
 
         // Set initial category adapter
-        val incomeCategorySpinnerAdapter: SpinnerAdapter<Category> = SpinnerAdapter(
-            activity,
-            ArrayList(categories.filter { it.type == "Income" }),
-            { it.name },
-            { it.imageId }
-        )
-        val expenseCategorySpinnerAdapter: SpinnerAdapter<Category> = SpinnerAdapter(
-            activity,
-            ArrayList(categories.filter { it.type == "Expense" }),
-            { it.name },
-            { it.imageId }
-        )
-
         // Default Category
+        categorySpinnerAdapter.filterCategory("Income")
         incomeTxtView.typeface = bold
-        categorySpinner.adapter = incomeCategorySpinnerAdapter
+        categorySpinner.adapter = categorySpinnerAdapter
 
         // Default Date
         val today = CustomDate()
@@ -190,15 +286,17 @@ class PopupManager() {
         var selectedDate = today
 
         incomeTxtView.setOnClickListener {
+            categorySpinnerAdapter.filterCategory("Income")
             incomeTxtView.typeface = bold
             expenseTxtView.typeface = regular
-            categorySpinner.adapter = incomeCategorySpinnerAdapter
+            categorySpinner.adapter = categorySpinnerAdapter
         }
 
         expenseTxtView.setOnClickListener {
+            categorySpinnerAdapter.filterCategory("Expense")
             expenseTxtView.typeface = bold
             incomeTxtView.typeface = regular
-            categorySpinner.adapter = expenseCategorySpinnerAdapter
+            categorySpinner.adapter = categorySpinnerAdapter
         }
 
         dateTxtView.setOnClickListener {
@@ -223,16 +321,18 @@ class PopupManager() {
         if (transaction != null) {
             // Populate fields with the current transaction's data
             if (transaction.type == "Expense") {
+                categorySpinnerAdapter.filterCategory("Expense")
                 expenseTxtView.typeface = bold
                 incomeTxtView.typeface = regular
-                categorySpinner.adapter = expenseCategorySpinnerAdapter
-                categorySpinner.setSelection(expenseCategorySpinnerAdapter.returnList().indexOf(transaction.category))
+
             } else {
+                categorySpinnerAdapter.filterCategory("Income")
                 incomeTxtView.typeface = bold
                 expenseTxtView.typeface = regular
-                categorySpinner.adapter = incomeCategorySpinnerAdapter
-                categorySpinner.setSelection(incomeCategorySpinnerAdapter.returnList().indexOf(transaction.category))
             }
+
+            categorySpinner.adapter = categorySpinnerAdapter
+            categorySpinner.setSelection(categorySpinnerAdapter.returnList().indexOf(transaction.category))
 
             accSpinner.setSelection(accountAdapter.accounts.indexOf(transaction.account))
             amountEditText.setText(transaction.amount.toString())
@@ -286,7 +386,9 @@ class PopupManager() {
                 }
                 selectedAccount.updateTransaction(transactionToUpdate)
                 selectedCategory.updateTransaction(transactionToUpdate)
-                recordsAdapter.notifyDataSetChanged()
+                recordsAdapter.editItem(transactionToUpdate)
+                filter.applyFilter(filter.selectedMonth, filter.selectedYear,
+                    recordsAdapter.originalList, recordsAdapter )
             }
 
             // Update account balance
