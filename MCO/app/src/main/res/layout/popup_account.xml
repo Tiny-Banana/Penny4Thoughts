@@ -123,7 +123,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/trans_cancelBtn"
+        android:id="@+id/acc_cancelBtn"
         android:layout_width="118dp"
         android:layout_height="55dp"
         android:layout_marginStart="40dp"
@@ -139,7 +139,7 @@
         app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/trans_saveBtn"
+        android:id="@+id/acc_saveBtn"
         android:layout_width="118dp"
         android:layout_height="55dp"
         android:layout_marginStart="32dp"
@@ -148,8 +148,8 @@
         android:text="SAVE"
         android:textSize="16sp"
         app:cornerRadius="10dp"
-        app:layout_constraintStart_toEndOf="@+id/trans_cancelBtn"
-        app:layout_constraintTop_toTopOf="@+id/trans_cancelBtn"
+        app:layout_constraintStart_toEndOf="@+id/acc_cancelBtn"
+        app:layout_constraintTop_toTopOf="@+id/acc_cancelBtn"
         app:strokeColor="#004D40"
         app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
 </androidx.constraintlayout.widget.ConstraintLayout>

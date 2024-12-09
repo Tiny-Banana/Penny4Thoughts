@@ -46,7 +46,7 @@ class AccountAdapter(
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_account, parent, false)
             AccountsHolder(view)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.btn_add_newacc, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.btn_add, parent, false)
             ButtonHolder(view)
         }
     }

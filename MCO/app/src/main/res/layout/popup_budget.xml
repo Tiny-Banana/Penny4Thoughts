@@ -147,37 +147,38 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Month:"
         android:textColor="@color/primary_gray"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/popupBudgetName"
-        app:layout_constraintTop_toTopOf="@+id/popupBudgetName" />
+        app:layout_constraintEnd_toStartOf="@+id/popupBudgetMonth"
+        app:layout_constraintTop_toTopOf="@+id/popupBudgetMonth" />
 
     <TextView
         android:id="@+id/popupBudgetMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Dec"
         android:textColor="@color/primary_gray"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toTopOf="@+id/textView18" />
+        app:layout_constraintEnd_toStartOf="@+id/popupBudgetYear"
+        app:layout_constraintTop_toTopOf="@+id/popupBudgetYear" />
 
     <TextView
         android:id="@+id/popupBudgetYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins_regular"
         android:text="2024"
         android:textColor="@color/primary_gray"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/popupBudgetMonth"
-        app:layout_constraintTop_toTopOf="@+id/popupBudgetMonth" />
+        app:layout_constraintEnd_toEndOf="@+id/myRectangleBorderView"
+        app:layout_constraintTop_toTopOf="@+id/myRectangleBorderView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

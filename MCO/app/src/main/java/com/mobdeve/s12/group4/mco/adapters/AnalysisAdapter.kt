@@ -33,7 +33,7 @@ class AnalysisAdapter(var categories: ArrayList<Category>):  RecyclerView.Adapte
 
     inner class AnalysisHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val catImg: ImageView =  itemView.findViewById(R.id.cat_img)
-        val catName : TextView = itemView.findViewById(R.id.cat_name)
+        val catName : TextView = itemView.findViewById(R.id.catName)
         val catAmt : TextView = itemView.findViewById(R.id.cat_amt)
         val catSign : TextView = itemView.findViewById(R.id.cat_sign)
         val catPeso : TextView = itemView.findViewById(R.id.cat_peso)
