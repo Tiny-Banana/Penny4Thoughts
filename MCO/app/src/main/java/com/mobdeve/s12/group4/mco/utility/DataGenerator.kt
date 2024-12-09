@@ -14,11 +14,11 @@ import com.mobdeve.s12.group4.mco.models.Transaction
 class DataGenerator {
     companion object {
         // Define Categories
-        private val salary = Category(0, R.drawable.wallet, "Salary", "Income")
         private val grants = Category(1, R.drawable.giftbox, "Grants", "Income")
-        private val health = Category(3, R.drawable.health, "Health", "Expense")
+        private val salary = Category(0, R.drawable.wallet, "Salary", "Income")
         private val education = Category(2, R.drawable.education, "Education", "Expense")
         private val food = Category(4, R.drawable.food, "Food", "Expense")
+        private val health = Category(3, R.drawable.health, "Health", "Expense")
 
         // Define Accounts
         private val accountChecking = Account(0, R.drawable.card, "Checking Account", 1000.0, mutableListOf())
@@ -38,6 +38,12 @@ class DataGenerator {
         private val icon1 = IconItem(R.drawable.pig, "#FFAAB9")
         private val icon2 = IconItem(R.drawable.card, "#67D4FF")
         private val icon3 = IconItem(R.drawable.cash, "#A2CC8D")
+
+        private val icon5 = IconItem(R.drawable.food, "#D8ECFE")
+        private val icon6 = IconItem(R.drawable.health, "#FF405C")
+        private val icon7 = IconItem(R.drawable.education, "#527992")
+        private val icon8 = IconItem(R.drawable.wallet, "#AA5D24")
+        private val icon9 = IconItem(R.drawable.giftbox, "#FFC73B")
 
         init {
             // Add transactions to categories
@@ -73,16 +79,20 @@ class DataGenerator {
 
         // Function to generate category data
         fun generateCategoryData(): ArrayList<Category> {
-            return arrayListOf(salary, grants, food, education, health)
+            return arrayListOf(grants, salary, education, food, health)
         }
 
-        fun generateIcons(): ArrayList<IconItem> {
+        fun generateAccIcons(): ArrayList<IconItem> {
             return arrayListOf(icon1, icon2, icon3)
+        }
+
+        fun generateCatIcons(): ArrayList<IconItem> {
+            return arrayListOf(icon5, icon6, icon7, icon8, icon9)
         }
 
         fun generateCategoryParent(): ArrayList<CategoryParent> {
             // List of categories
-            val categories = listOf(salary, grants, education, health, food)
+            val categories = listOf(grants, salary, education, food, health)
 
             // Group categories by their type (Income/Expense)
             val groupedCategories = categories.groupBy { it.type }
@@ -98,7 +108,7 @@ class DataGenerator {
 
         fun generateBudgetParent(month: Int, year: Int): ArrayList<CategoryParent> {
             // Sample categories
-            val categories = listOf(salary, grants, education, health, food)
+            val categories = listOf(grants, salary, education, food, health)
 
             // Split categories into budgeted and not budgeted for the given month
             val budgeted = mutableListOf<Category>()

@@ -88,6 +88,30 @@ class Filter {
             adapter.filteredTransactions = allFilteredTransactions
         }
 
+    fun filterCategoryName(adapter: ParentAdapter<CategoryParent, Category>) {
+        val categoryList = adapter.originalList
+
+        // Iterate through each CategoryParent and sort the list of Category by name
+        categoryList.forEach { categoryParent ->
+            categoryParent.list.sortBy { it.name } // Sort categories by name (ascending order)
+        }
+
+        // After sorting each section, update the adapter with the modified list
+        adapter.updateFilteredList(categoryList)
+    }
+
+    fun filterCategoryParent(categories: ArrayList<Category>): ArrayList<CategoryParent> {
+        val groupedCategories = categories.groupBy { it.type }
+
+        // Transform the grouped data into a list of CategoryParent objects
+        val categoryParents = groupedCategories.map { (type, categoryList) ->
+            CategoryParent(section = "$type Categories", list = categoryList.toMutableList())
+        }
+
+        // Return the result as an ArrayList
+        return ArrayList(categoryParents)
+    }
+
     fun filterCategoryBudget(month: Int, year: Int, adapter: ParentAdapter<CategoryParent, Category>) {
         // Generate the new data based on the selected month and year
         val categories = adapter.list.flatMap { it.list }

@@ -1,7 +1,7 @@
 package com.mobdeve.s12.group4.mco.models
 
 class Category(
-    id: Int, imageId: Int, name: String, type: String,
+    id: Long, imageId: Int, name: String, type: String,
     transactions: MutableList<Transaction> = mutableListOf(),
     budgets: MutableList<Budget> = mutableListOf()
 ) {
@@ -9,13 +9,19 @@ class Category(
         private set
 
     var imageId = imageId
-        private set
+        set(value) {
+            field = value
+        }
 
     var name = name
-        private set
+        set(value) {
+            field = value
+        }
 
     var type = type
-        private set
+        set(value) {
+            field = value
+        }
 
     var transactions = transactions
         private set

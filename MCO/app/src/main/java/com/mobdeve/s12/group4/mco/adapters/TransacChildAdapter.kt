@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -43,7 +44,7 @@ class TransacChildAdapter(
     private val recordsAdapter: ParentAdapter<TransacParent, Transaction>,
     private val budgetAdapter: ParentAdapter<CategoryParent, Category>,
     private val accountSpinnerAdapter: SpinnerAdapter<Account>,
-    private val categories: ArrayList<Category>):
+    private val categorySpinnerAdapter: SpinnerAdapter<Category>):
 
     RecyclerView.Adapter<TransacChildAdapter.TransacHolder>(){
 
@@ -122,8 +123,8 @@ class TransacChildAdapter(
             recordsAdapter,
             budgetAdapter,
             accountSpinnerAdapter,
+            categorySpinnerAdapter,
             filter,
-            categories,
             transaction
         )
 

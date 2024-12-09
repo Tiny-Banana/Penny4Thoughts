@@ -8,10 +8,16 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.mobdeve.s12.group4.mco.R
+import com.mobdeve.s12.group4.mco.models.Category
+import com.mobdeve.s12.group4.mco.models.CategoryParent
 
-class SpinnerAdapter<T : Any>(var context: Context, var items: ArrayList<T>,
+class SpinnerAdapter<T : Any>(var context: Context,
+                              var items: ArrayList<T>,
                               var getName: (T) -> String,
                               var getImageId: (T) -> Int   ) : BaseAdapter() {
+
+    private lateinit var categoryAdapter: ParentAdapter<CategoryParent, Category>
+
     override fun getCount(): Int {
         return items.size
     }
@@ -28,31 +34,43 @@ class SpinnerAdapter<T : Any>(var context: Context, var items: ArrayList<T>,
         val view: View
         val viewHolder: ViewHolder
 
-        // Check if convertView is null (no recycled view available)
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_spinner, parent, false)
             viewHolder = ViewHolder(view)
-            view.tag = viewHolder // Store the ViewHolder with the view for reuse
+            view.tag = viewHolder
         } else {
             view = convertView
-            viewHolder = view.tag as ViewHolder // Retrieve the cached ViewHolder
+            viewHolder = view.tag as ViewHolder
         }
 
-        // Bind the data to the view
         val item = items[position]
 
-        // Use the lambdas to retrieve name and image
         viewHolder.name.text = getName(item)
         viewHolder.image.setImageResource(getImageId(item))
 
         return view
     }
 
-    fun returnList() : ArrayList<T>{
+    fun returnList(): ArrayList<T> {
         return items
     }
 
-    // ViewHolder class for caching views
+    fun filterCategory(type: String) {
+        val categories = categoryAdapter.getChildList().filterIsInstance<Category>()
+        val filteredCategories = categories.filter { it.type == type }
+        items = ArrayList(filteredCategories as List<T>)
+        notifyDataSetChanged()
+    }
+
+    fun setCategoryAdapter(categoryAdapter: ParentAdapter<CategoryParent, Category>) {
+        this.categoryAdapter = categoryAdapter
+        this.items = categoryAdapter.getChildList() as ArrayList<T>
+    }
+
+    fun updateItems() {
+        this.items = categoryAdapter.getChildList() as ArrayList<T>
+    }
+
     private class ViewHolder(view: View) {
         val name: TextView = view.findViewById(R.id.spin_name)
         val image: ImageView = view.findViewById(R.id.spin_img)

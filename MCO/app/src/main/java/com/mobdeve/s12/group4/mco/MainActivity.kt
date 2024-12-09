@@ -43,7 +43,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recordsAdapter: ParentAdapter<TransacParent, Transaction>
     private lateinit var analysisAdapter: AnalysisAdapter
     private lateinit var accountSpinnerAdapter: SpinnerAdapter<com.mobdeve.s12.group4.mco.models.Account>
-    private lateinit var iconAdapter: IconAdapter
+    private lateinit var categorySpinnerAdapter: SpinnerAdapter<Category>
+    private lateinit var accIconAdapter: IconAdapter
+    private lateinit var catIconAdapter: IconAdapter
     private lateinit var homeFragment: HomeFragment
     private lateinit var analysisFragment: AnalysisFragment
     private lateinit var recordsFragment: RecordsFragment
@@ -69,26 +71,47 @@ class MainActivity : AppCompatActivity() {
 
         val accounts = DataGenerator.generateAccountData()
         val categories = DataGenerator.generateCategoryData()
-        val categoryParent = DataGenerator.generateCategoryParent()
+        val categoryParent = filter.filterCategoryParent(categories)
         val budgetParent = DataGenerator.generateBudgetParent(filter.selectedMonthNum, filter.selectedYear)
         val transacParent = DataGenerator.generateTransacParent()
-        val icons = DataGenerator.generateIcons()
+        val accIcons = DataGenerator.generateAccIcons()
+        val catIcons = DataGenerator.generateCatIcons()
 
-        iconAdapter = IconAdapter(icons)
+        accIconAdapter = IconAdapter(accIcons)
+        catIconAdapter = IconAdapter(catIcons)
+
         accountAdapter = AccountAdapter(
             this,
             accounts,
-            iconAdapter)
+            accIconAdapter)
         accountSpinnerAdapter = SpinnerAdapter(
             this,
             accounts,
             { it.name },
             { it.imageId })
+        categorySpinnerAdapter = SpinnerAdapter(
+            this,
+            ArrayList(),
+            { it.name },
+            { it.imageId }
+        )
+
         categoryAdapter = ParentAdapter(categoryParent,
             {it.section},
             {it.list},
-            { childList -> CategoryChildAdapter(childList) },
-            filter)
+            { childList ->
+                CategoryChildAdapter(
+                    childList,
+                    this,
+                    categoryAdapter,
+                    catIconAdapter,
+                    filter) },
+            filter,
+            this,
+            catIconAdapter,
+            categorySpinnerAdapter)
+        categorySpinnerAdapter.setCategoryAdapter(categoryAdapter)
+
         recordsAdapter = ParentAdapter(transacParent,
             {it.section},
             {it.list},
@@ -107,11 +130,14 @@ class MainActivity : AppCompatActivity() {
                     recordsAdapter,
                     budgetAdapter,
                     accountSpinnerAdapter,
-                    categories)
+                    categorySpinnerAdapter)
                 transacChildAdapter.setFragment(recordsFragment)
                 transacChildAdapter
             },
-            filter)
+            filter,
+            this,
+            catIconAdapter,
+            categorySpinnerAdapter)
         budgetAdapter = ParentAdapter(
             budgetParent,
             { it.section },
@@ -123,7 +149,10 @@ class MainActivity : AppCompatActivity() {
                 budgetChildAdapter.setFragment(budgetFragment)
                 budgetChildAdapter
             },
-            filter
+            filter,
+            this,
+            catIconAdapter,
+            categorySpinnerAdapter
         )
 
         analysisAdapter = AnalysisAdapter(categories)
@@ -162,8 +191,8 @@ class MainActivity : AppCompatActivity() {
                         recordsAdapter,
                         budgetAdapter,
                         accountSpinnerAdapter,
+                        categorySpinnerAdapter,
                         filter,
-                        categories,
                         null
                     )
         }
